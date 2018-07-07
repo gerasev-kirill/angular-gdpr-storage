@@ -13,7 +13,17 @@ module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
-
+        coffee:{
+            all:{
+                options:{
+                    bare: true
+                },
+                files:{
+                    'dist/ngStorage.js': 'src/ngStorage.coffee',
+                    'test/spec.js': 'test/spec.coffee'
+                }
+            }
+        },
         karma: {
             unit: {
                 options: {
@@ -21,7 +31,7 @@ module.exports = function(grunt) {
                         'components/angular/angular.js',
                         'components/angular-mocks/angular-mocks.js',
                         'components/chai/chai.js',
-                        'ngStorage.js',
+                        'dist/ngStorage.js',
                         'test/spec.js'
                     ]
                 },
@@ -36,22 +46,24 @@ module.exports = function(grunt) {
 
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> <%= pkg.version %> | Copyright (c) <%= grunt.template.today("yyyy") %> Gias Kay Lee | MIT License */'
+                banner: '/*! <%= pkg.name %> <%= pkg.version %> | Copyright (c) <%= grunt.template.today("yyyy") %> Gias Kay Lee | MIT License */\n'
             },
 
             build: {
-                src: 'ngStorage.js',
-                dest: 'ngStorage.min.js'
+                src: 'dist/ngStorage.js',
+                dest: 'dist/ngStorage.min.js'
             }
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-contrib-coffee');
 
-    grunt.registerTask('test', ['karma']);
+    grunt.registerTask('test', ['coffee', 'karma']);
 
     grunt.registerTask('default', [
+        'coffee',
         'test',
         'uglify'
     ]);
