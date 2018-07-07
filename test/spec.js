@@ -22,24 +22,40 @@ describe('ngStorage', function() {
         expect($sessionStorage).not.to.equal(null);
     }));
 
-    describeStorageBehaviorFor('localStorage');
+    //describeStorageBehaviorFor('localStorage');
     describeStorageBehaviorFor('sessionStorage');
 
     function describeStorageBehaviorFor(storageType) {
+        var $window = {
+            eventHandlers: {},
+            addEventListener: function(event, handler) {
+                this.eventHandlers[event] = handler;
+            }
+        };
+        $window[storageType] = window[storageType];
+
+        beforeEach(function(){
+            module(function($provide) {
+                $provide.value('$window', $window);
+            });
+        });
+
 
         describe('$' + storageType, function() {
 
-            var $window, $rootScope, $storage, $timeout;
+            var $rootScope, $storage, $timeout;
 
             function initStorage(initialValues) {
-
-                $window = {
-                    eventHandlers: {},
-                    addEventListener: function(event, handler) {
-                        this.eventHandlers[event] = handler;
+                for (var k in $storage) {
+                    if (k[0] !== '$'){
+                        delete $storage[k];
                     }
-                };
-
+                }
+                window[storageType].clear();
+                for (var k in initialValues) {
+                    window[storageType].setItem(k, initialValues[k]);
+                }
+                /*
                 $window[storageType] = {
                     length: Object.keys(initialValues).length,
                     data: initialValues,
@@ -54,10 +70,7 @@ describe('ngStorage', function() {
                     },
                     key: function(i) { return Object.keys(this.data)[i]; }
                 };
-
-                module(function($provide) {
-                    $provide.value('$window', $window);
-                });
+                */
 
                 inject(['$rootScope', '$' + storageType, '$timeout',
                     function(_$rootScope_, _$storage_, _$timeout) {
@@ -79,10 +92,7 @@ describe('ngStorage', function() {
                     'ngStorage-bool': 'true',
                     'ngStorage-object': '{"string":"a string", "number": 123, "bool": true}'
                 });
-
-                delete $storage.$default;
-                delete $storage.$reset;
-                delete $storage.$sync;
+                $storage.$sync();
 
                 expect(onlyOwnProps($storage)).to.deep.equal({
                     string: 'a string',
@@ -96,7 +106,6 @@ describe('ngStorage', function() {
 
             it('should add a key to window.' + storageType + ' when a key is added to $storage',
                 function(done) {
-
                 initStorage({});
                 $storage.newKey = 'some value';
                 $rootScope.$digest();
@@ -104,12 +113,13 @@ describe('ngStorage', function() {
                 $timeout.flush();
 
                 setTimeout(function() {
-                    expect($window[storageType].data)
+                    expect(onlyOwnProps($window[storageType]))
                         .to.deep.equal({'ngStorage-newKey': '"some value"'});
                     done();
                 }, 125);
 
             });
+
 
             it('should update the associated key in window.' + storageType + ' when a key in $' +
                 storageType + ' is updated', function(done) {
@@ -121,7 +131,7 @@ describe('ngStorage', function() {
                 $timeout.flush();
 
                 setTimeout(function() {
-                    expect($window[storageType].data)
+                    expect(onlyOwnProps($window[storageType]))
                         .to.deep.equal({'ngStorage-existing': '"updated"'});
                     done();
                 }, 125);
@@ -138,7 +148,7 @@ describe('ngStorage', function() {
                 $timeout.flush();
 
                 setTimeout(function() {
-                    expect($window[storageType].data).to.deep.equal({});
+                    expect(onlyOwnProps($window[storageType])).to.deep.equal({});
                     done();
                 }, 125);
 
@@ -163,17 +173,13 @@ describe('ngStorage', function() {
 
                 it('should delete all ngStorage- keys from window.' + storageType, function() {
 
-                    expect($window[storageType].data).to.deep.equal({
+                    expect(onlyOwnProps($window[storageType])).to.deep.equal({
                         nonNgStorage: 'this should not be changed'
                     });
 
                 });
 
                 it('should delete all keys from $' + storageType, function() {
-
-                    delete $storage.$default;
-                    delete $storage.$reset;
-                    delete $storage.$sync;
 
                     expect(onlyOwnProps($storage)).to.deep.equal({});
 
@@ -201,7 +207,7 @@ describe('ngStorage', function() {
                 it('should reset the ngStorage- keys on window.' + storageType +
                     ' to match the object', function() {
 
-                    expect($window[storageType].data).to.deep.equal({
+                    expect(onlyOwnProps($window[storageType])).to.deep.equal({
                         nonNgStorage: 'this should not be changed',
                         'ngStorage-some': '"value"'
                     });
@@ -209,10 +215,6 @@ describe('ngStorage', function() {
                 });
 
                 it('should reset $' + storageType + ' to match the object', function() {
-
-                    delete $storage.$default;
-                    delete $storage.$reset;
-                    delete $storage.$sync;
 
                     expect(onlyOwnProps($storage)).to.deep.equal({some: 'value'});
 
@@ -243,7 +245,7 @@ describe('ngStorage', function() {
                 it('should should add any missing ngStorage- keys on window.' + storageType,
                     function() {
 
-                    expect($window[storageType].data['ngStorage-new'])
+                    expect($window[storageType]['ngStorage-new'])
                         .to.equal('"new value"');
 
                 });
@@ -257,7 +259,7 @@ describe('ngStorage', function() {
                 it('should should not modify any existing ngStorage- keys on window.' + storageType,
                     function() {
 
-                    expect($window[storageType].data['ngStorage-existing'])
+                    expect($window[storageType]['ngStorage-existing'])
                         .to.equal('"this should not be replaced"');
 
                 });
@@ -271,6 +273,12 @@ describe('ngStorage', function() {
             });
 
 
+
+            if (storageType === 'sessionStorage'){
+                // sessionStorage doen't has events
+                // from mdn: A page session lasts for as long as the browser is open and survives over page reloads and restores. Opening a page in a new tab or window will cause a new session to be initiated, which differs from how session cookies work.
+                return;
+            }
             describe('when an ngStorage- value in window.localStorage is updated', function() {
 
                 beforeEach(function() {

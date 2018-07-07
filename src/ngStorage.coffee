@@ -11,8 +11,7 @@
 ) this, (angular) ->
     'use strict'
     STORAGE_PREFIX = 'ngStorage-'
-    ngLocalStorage = null
-    ngSessionStorage = null
+
     getStorageKey = (key) ->
         key.slice(STORAGE_PREFIX.length)
 
@@ -96,37 +95,40 @@
         $storage.$sync()
         _last$storage = angular.copy  ($storage)
 
-        $rootScope.$watch ->
-            _debounce or (_debounce = $timeout($storage.$apply, 100, false))
-            return
-        # #6: Use `$window.addEventListener` instead of `angular.element` to avoid the jQuery-specific `event.originalEvent`
-        $window.addEventListener 'storage', (event) ->
-            key = event.key
-            newValue = event.newValue
-            $storageKey = undefined
-            if !key
+        if storageType == 'localStorage'
+            # #6: Use `$window.addEventListener` instead of `angular.element` to avoid the jQuery-specific `event.originalEvent`
+            $window.addEventListener 'storage', (event) ->
+                key = event.key
+                newValue = event.newValue
+                $storageKey = undefined
+                if !key
+                    return
+                $storageKey = getStorageKey(key)
+                if key == STORAGE_PREFIX + $storageKey
+                    if newValue
+                        $storage[$storageKey] = angular.fromJson(newValue)
+                    else
+                        delete $storage[$storageKey]
+                    _last$storage = angular.copy  ($storage)
+                    if !$rootScope.$$phase
+                        $rootScope.$apply()
                 return
-            $storageKey = getStorageKey(key)
-            if key == STORAGE_PREFIX + $storageKey
-                if newValue
-                    $storage[$storageKey] = angular.fromJson(newValue)
-                else
-                    delete $storage[$storageKey]
-                _last$storage = angular.copy  ($storage)
-                if !$rootScope.$$phase
-                    $rootScope.$apply()
-            return
 
-        $window.addEventListener 'beforeunload',
-            (event) ->
-                $storage.$apply()
-                return
-            ,
-            false
+            $window.addEventListener 'beforeunload',
+                (event) ->
+                    $storage.$apply()
+                    return
+                ,
+                false
         $storage
 
 
 
+
+    ngLocalStorage = null
+    ngSessionStorage = null
+    rmNgLocalStorageWatch = null
+    rmNgSessionStorageWatch = null
 
     ###*
     # @ngdoc overview
@@ -142,9 +144,41 @@
                 STORAGE_PREFIX
         }
         @
-    .service '$localStorage', ($rootScope, $window, $log, $timeout)->
-        ngLocalStorage = generateStorageFactory($rootScope, $window, $log, $timeout, 'localStorage')
+
+    .factory '$localStorage', ($rootScope, $window, $log, $timeout)->
+        _debounce = null
+        if !ngLocalStorage
+            ngLocalStorage = generateStorageFactory($rootScope, $window, $log, $timeout, 'localStorage')
+        else
+            ngLocalStorage.$sync()
+
+        if rmNgLocalStorageWatch
+            rmNgLocalStorageWatch()
+        rmNgLocalStorageWatch = $rootScope.$watch ->
+            if !_debounce
+                _debounce = $timeout \
+                    ()-> ngLocalStorage.$apply()
+                    ,
+                    100,
+                    false
+            _debounce
         ngLocalStorage
+
     .service '$sessionStorage', ($rootScope, $window, $log, $timeout)->
-        ngSessionStorage = generateStorageFactory($rootScope, $window, $log, $timeout, 'sessionStorage')
+        _debounce = null
+        if !ngSessionStorage
+            ngSessionStorage = generateStorageFactory($rootScope, $window, $log, $timeout, 'sessionStorage')
+        else
+            ngSessionStorage.$sync()
+
+        if rmNgSessionStorageWatch
+            rmNgSessionStorageWatch()
+        rmNgSessionStorageWatch = $rootScope.$watch ->
+            if !_debounce
+                _debounce = $timeout \
+                    ()-> ngSessionStorage.$apply()
+                    ,
+                    100,
+                    false
+            _debounce
         ngSessionStorage
