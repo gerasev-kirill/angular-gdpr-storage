@@ -14,7 +14,7 @@
   },
   "main": "ngStorage.js",
   "scripts": {
-    "test": "./node_modules/.bin/grunt test"
+    "test": "grunt test"
   },
   "devDependencies": {
     "bower": "^1.x",
@@ -22,13 +22,12 @@
     "grunt-cli": "^0.1.11",
     "grunt-contrib-uglify": "^0.x",
     "grunt-karma": "^0.x",
-    "karma": "^0.12.37",
+    "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.0",
     "karma-firefox-launcher": "^0.1.3",
     "karma-mocha": "^0.2.0",
     "karma-phantomjs-launcher": "^0.2.0",
     "mocha": "^2.2.4",
-    "phantomjs": "^1.9.17"
-  },
-  "dependencies": {}
+    "phantomjs": "^2.1.7"
+  }
 }

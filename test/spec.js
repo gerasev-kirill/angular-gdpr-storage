@@ -3,7 +3,10 @@
 /* global describe, beforeEach, it, module, inject, expect, chai */
 
 describe('ngStorage', function() {
-    var expect = chai.expect;
+    var expect = chai.expect,
+        onlyOwnProps = function(obj){
+            return JSON.parse(JSON.stringify(obj));
+        };
 
     beforeEach(module('ngStorage'));
 
@@ -81,7 +84,7 @@ describe('ngStorage', function() {
                 delete $storage.$reset;
                 delete $storage.$sync;
 
-                expect($storage).to.deep.equal({
+                expect(onlyOwnProps($storage)).to.deep.equal({
                     string: 'a string',
                     number: 123,
                     bool: true,
@@ -89,6 +92,7 @@ describe('ngStorage', function() {
                 });
 
             });
+
 
             it('should add a key to window.' + storageType + ' when a key is added to $storage',
                 function(done) {
@@ -171,7 +175,7 @@ describe('ngStorage', function() {
                     delete $storage.$reset;
                     delete $storage.$sync;
 
-                    expect($storage).to.deep.equal({});
+                    expect(onlyOwnProps($storage)).to.deep.equal({});
 
                 });
 
@@ -210,7 +214,7 @@ describe('ngStorage', function() {
                     delete $storage.$reset;
                     delete $storage.$sync;
 
-                    expect($storage).to.deep.equal({some: 'value'});
+                    expect(onlyOwnProps($storage)).to.deep.equal({some: 'value'});
 
                 });
 
@@ -324,5 +328,3 @@ describe('ngStorage', function() {
     }
 
 });
-
-
