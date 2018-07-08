@@ -16,7 +16,8 @@ module.exports = function(grunt) {
         coffee:{
             all:{
                 options:{
-                    bare: true
+                    bare: true,
+                    sourceMap: true
                 },
                 files:{
                     'dist/ngStorage.js': 'src/ngStorage.coffee',
@@ -25,7 +26,7 @@ module.exports = function(grunt) {
             }
         },
         karma: {
-            unit: {
+            storages: {
                 options: {
                     files: [
                         'components/angular/angular.js',
@@ -35,11 +36,28 @@ module.exports = function(grunt) {
                         'test/spec.js'
                     ]
                 },
-
+                preprocessors: {
+                  'dist/*.js': ['sourcemap']
+                },
                 frameworks: ['mocha'],
-
                 browsers: browsers,
-
+                singleRun: true
+            },
+            gdpr: {
+                options: {
+                    files: [
+                        'components/angular/angular.js',
+                        'components/angular-mocks/angular-mocks.js',
+                        'components/chai/chai.js',
+                        'dist/ngStorage.js',
+                        'test/gdprSpec.js'
+                    ]
+                },
+                preprocessors: {
+                  'dist/*.js': ['sourcemap']
+                },
+                frameworks: ['mocha'],
+                browsers: browsers,
                 singleRun: true
             }
         },

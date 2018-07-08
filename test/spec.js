@@ -116,7 +116,6 @@ describe('ngStorage', function() {
                 initStorage(values);
                 $storage.$sync();
 
-                console.log($storage);
                 expect(onlyOwnProps($storage)).to.deep.equal({
                     string: 'a string',
                     number: 123,

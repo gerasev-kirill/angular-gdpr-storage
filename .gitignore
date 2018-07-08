@@ -7,3 +7,4 @@ components
 .DS_Store
 .idea
 src/ngStorage.js
+*.js.map
