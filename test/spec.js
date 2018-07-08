@@ -22,19 +22,25 @@ describe('ngStorage', function() {
         expect($sessionStorage).not.to.equal(null);
     }));
 
-    //describeStorageBehaviorFor('localStorage');
+    describeStorageBehaviorFor('localStorage');
     describeStorageBehaviorFor('sessionStorage');
+    var $window = {
+        eventHandlers: {},
+        addEventListener: function(event, handler) {
+            this.eventHandlers[event] = this.eventHandlers[event] || [];
+            this.eventHandlers[event].push(handler);
+        }
+    };
+    $window.localStorage = window.localStorage;
+    $window.sessionStorage = window.sessionStorage;
+
+
 
     function describeStorageBehaviorFor(storageType) {
-        var $window = {
-            eventHandlers: {},
-            addEventListener: function(event, handler) {
-                this.eventHandlers[event] = handler;
-            }
-        };
-        $window[storageType] = window[storageType];
 
         beforeEach(function(){
+            window.localStorage.clear();
+            window.sessionStorage.clear();
             module(function($provide) {
                 $provide.value('$window', $window);
             });
@@ -79,27 +85,47 @@ describe('ngStorage', function() {
                         $timeout = _$timeout;
                     }
                 ]);
-
             }
+
+            function expectStorageToContains(values){
+                var keys = Object.keys(values).sort();
+                var storage = window[storageType];
+                if (storageType === 'localStorage') {
+                    var wrongStorage = window.sessionStorage;
+                } else {
+                    var wrongStorage = window.localStorage;
+                }
+                for (var k in values) {
+                    expect(Object.keys(storage).indexOf(k) > -1).to.equal(true);
+                    expect(Object.keys(wrongStorage).indexOf(k) > -1).to.equal(false);
+                }
+            }
+
 
             it('should, upon loading, contain a value for each ngStorage- key in window.' +
                 storageType, function() {
-
-                initStorage({
+                var values = {
                     nonNgStorage: 'this should be ingored',
                     'ngStorage-string': '"a string"',
                     'ngStorage-number': '123',
                     'ngStorage-bool': 'true',
                     'ngStorage-object': '{"string":"a string", "number": 123, "bool": true}'
-                });
+                };
+                values[storageType] = 'hello storage!';
+
+                initStorage(values);
                 $storage.$sync();
 
+                console.log($storage);
                 expect(onlyOwnProps($storage)).to.deep.equal({
                     string: 'a string',
                     number: 123,
                     bool: true,
                     object: { string:'a string', number: 123, bool: true }
                 });
+                var special = {};
+                special[storageType] = 'hello storage!';
+                expectStorageToContains(special);
 
             });
 
@@ -113,8 +139,9 @@ describe('ngStorage', function() {
                 $timeout.flush();
 
                 setTimeout(function() {
-                    expect(onlyOwnProps($window[storageType]))
-                        .to.deep.equal({'ngStorage-newKey': '"some value"'});
+                    var values = {'ngStorage-newKey': '"some value"'}
+                    expect(onlyOwnProps($window[storageType])).to.deep.equal(values);
+                    expectStorageToContains(values);
                     done();
                 }, 125);
 
@@ -274,11 +301,6 @@ describe('ngStorage', function() {
 
 
 
-            if (storageType === 'sessionStorage'){
-                // sessionStorage doen't has events
-                // from mdn: A page session lasts for as long as the browser is open and survives over page reloads and restores. Opening a page in a new tab or window will cause a new session to be initiated, which differs from how session cookies work.
-                return;
-            }
             describe('when an ngStorage- value in window.localStorage is updated', function() {
 
                 beforeEach(function() {
@@ -287,9 +309,13 @@ describe('ngStorage', function() {
 
                     var updateEvent = {
                         key: 'ngStorage-existing',
-                        newValue: '"updated"'
+                        newValue: '"updated"',
+                        storageArea: window[storageType]
                     };
-                    $window.eventHandlers.storage(updateEvent);
+
+                    $window.eventHandlers.storage.forEach(function(cb){
+                        cb(updateEvent);
+                    });
                 });
 
                 it('should reflect the update', function() {
@@ -305,9 +331,12 @@ describe('ngStorage', function() {
 
                     var updateEvent = {
                         key: 'ngStorage-value',
-                        newValue: '"new"'
+                        newValue: '"new"',
+                        storageArea: window[storageType]
                     };
-                    $window.eventHandlers.storage(updateEvent);
+                    $window.eventHandlers.storage.forEach(function(cb){
+                        cb(updateEvent);
+                    });
                 });
 
                 it('should reflect the addition', function() {
@@ -323,8 +352,11 @@ describe('ngStorage', function() {
 
                     var updateEvent = {
                         key: 'ngStorage-existing',
+                        storageArea: window[storageType]
                     };
-                    $window.eventHandlers.storage(updateEvent);
+                    $window.eventHandlers.storage.forEach(function(cb){
+                        cb(updateEvent);
+                    });
                 });
 
                 it('should reflect the deletion', function() {

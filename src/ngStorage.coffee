@@ -21,7 +21,7 @@
         _debounce = null
         _last$storage = null
 
-        isStorageSupported = (storageType) ->
+        getStorage = (storageType) ->
             # Some installations of IE, for an unknown reason, throw "SCRIPT5: Error: Access is denied"
             # when accessing window.localStorage. This happens before you try to do anything with it. Catch
             # that error and allow execution to continue.
@@ -46,7 +46,7 @@
 
 
         # #9: Assign a placeholder object if Web Storage is unavailable to prevent breaking the entire AngularJS app
-        webStorage = isStorageSupported(storageType)
+        webStorage = getStorage(storageType)
         if !webStorage
             $log.warn('This browser does not support Web Storage!')
             webStorage = {
@@ -95,31 +95,31 @@
         $storage.$sync()
         _last$storage = angular.copy  ($storage)
 
-        if storageType == 'localStorage'
-            # #6: Use `$window.addEventListener` instead of `angular.element` to avoid the jQuery-specific `event.originalEvent`
-            $window.addEventListener 'storage', (event) ->
-                key = event.key
-                newValue = event.newValue
-                $storageKey = undefined
-                if !key
-                    return
-                $storageKey = getStorageKey(key)
-                if key == STORAGE_PREFIX + $storageKey
-                    if newValue
-                        $storage[$storageKey] = angular.fromJson(newValue)
-                    else
-                        delete $storage[$storageKey]
-                    _last$storage = angular.copy  ($storage)
-                    if !$rootScope.$$phase
-                        $rootScope.$apply()
+        # #6: Use `$window.addEventListener` instead of `angular.element` to avoid the jQuery-specific `event.originalEvent`
+        $window.addEventListener 'storage', (event) ->
+            if !event or !event.key or event.storageArea != getStorage(storageType)
                 return
+            key = event.key
+            newValue = event.newValue
+            $storageKey = undefined
+            $storageKey = getStorageKey(key)
+            if key == STORAGE_PREFIX + $storageKey
+                if newValue
+                    $storage[$storageKey] = angular.fromJson(newValue)
+                else
+                    delete $storage[$storageKey]
+                _last$storage = angular.copy  ($storage)
+                if !$rootScope.$$phase
+                    $rootScope.$apply()
+            return
 
-            $window.addEventListener 'beforeunload',
-                (event) ->
-                    $storage.$apply()
-                    return
-                ,
-                false
+        $window.addEventListener 'beforeunload',
+            (event) ->
+                $storage.$apply()
+                return
+            ,
+            false
+
         $storage
 
 
