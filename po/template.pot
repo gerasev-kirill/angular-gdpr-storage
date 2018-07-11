@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: src/gdprRequestPermissionArea.html:48
+#: src/gdprRequestPermissionArea.html:67
+msgctxt "Accept cookies"
+msgid "Accept"
+msgstr ""
+
+#: src/gdprRequestPermissionArea.html:57
+#: src/gdprRequestPermissionArea.html:68
+msgctxt "Accept all cookies"
+msgid "Accept all"
+msgstr ""
+
+#: src/gdprRequestPermissionArea.html:52
+#: src/gdprRequestPermissionArea.html:69
+msgctxt "Deny cookies"
+msgid "Cancel"
+msgstr ""
+
+#: src/gdprRequestPermissionArea.html:25
+msgid "Expiry"
+msgstr ""
+
+#: src/_translate.html:1
+msgid "GDPR permission data for site"
+msgstr ""
+
+#: src/gdprRequestPermissionArea.html:7
+msgid "Hide details"
+msgstr ""
+
+#: src/_translate.html:1
+msgid "Local storage"
+msgstr ""
+
+#: src/gdprRequestPermissionArea.html:22
+msgid "Name"
+msgstr ""
+
+#: src/_translate.html:1
+msgid "Never"
+msgstr ""
+
+#: src/gdprRequestPermissionArea.html:23
+msgid "Provider"
+msgstr ""
+
+#: src/gdprRequestPermissionArea.html:24
+msgid "Purpose"
+msgstr ""
+
+#: src/_translate.html:1
+msgid "Settings"
+msgstr ""
+
+#: src/gdprRequestPermissionArea.html:7
+msgid "Show details about cookies and local storage"
+msgstr ""
+
+#: src/_translate.html:1
+msgid "Site settings"
+msgstr ""
+
+#: src/_translate.html:1
+msgid "This site"
+msgstr ""
+
+#: src/gdprRequestPermissionArea.html:6
+msgid "This website uses cookies and local storage"
+msgstr ""
+
+#: src/gdprRequestPermissionArea.html:26
+msgid "Type"
+msgstr ""
+
+#: src/gdprRequestPermissionArea.html:7
+msgid "We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. You should consent to our cookies if you continue to use our website"
+msgstr ""

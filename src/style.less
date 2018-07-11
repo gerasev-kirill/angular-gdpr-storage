@@ -1,0 +1,66 @@
+// out: ./style.css
+gdpr-request-permission-banner{
+    display: none;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: auto;
+    box-shadow: 0 0 5px fade(black, 80%);
+    z-index: 500000;
+    &.visible{
+        display: block;
+    }
+}
+
+gdpr-request-permission-area{
+    display: block;
+    table{
+        width: 100%;
+    }
+    h5{
+        font-size: 14px;
+        line-height: 14px;
+    }
+    .gdpr-text{
+        font-size: 12px;
+        line-height: 12px;
+        @media(max-width: 800px){
+            font-size: 10px;
+            line-height: 10px;
+        }
+    }
+
+    a[ng-click]{
+        cursor: pointer;
+    }
+    .checkbox-inline > label{
+        cursor: pointer;
+    }
+    .gdpr-request-permission-area-content-btns{
+        padding-left: 15px;
+        width: 14em;
+        .btn-xs{
+            margin-top: 5px;
+            margin-bottom: 5px;
+            .fa{
+                padding-right: 3px;
+            }
+        }
+        .btn-separator{
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+    }
+    .gdpr-request-permission-area-content-details{
+        .uib-tabset-sm{
+            .nav-link{
+                font-size: 12px;
+                line-height: 12px;
+                padding: 3px 5px;
+            }
+        }
+    }
+}

@@ -6,5 +6,8 @@ components
 .tmp
 .DS_Store
 .idea
-src/ngStorage.js
+src/*.js
+src/*.html
+src/*.css
+po/*.mo
 *.js.map

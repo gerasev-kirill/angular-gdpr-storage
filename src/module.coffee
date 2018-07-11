@@ -102,6 +102,7 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
         $storage.$getAllowedKeys = ()->
             angular.copy(allowedKeysForGdpr)
 
+        signalState = 'none'
         $storage.$setPermission = (permission)->
             permission = permission or {}
             permission.app = !!permission.app
@@ -110,6 +111,12 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
             else
                 sType = 'sessionStorage'
             $storage.gdprPermission = permission
+            if signalState == 'none'
+                $rootScope.$emit("storage.gdpr.init")
+                signalState = 'init'
+            else
+                signalState = 'update'
+                $rootScope.$emit("storage.gdpr.permissionUpdate")
             # migrate from one storage to other
             oldStorage = getStorage(preferredStorageType)
             newStorage = getStorage(sType)
@@ -174,15 +181,29 @@ rmNgGdprStorageWatch = null
 ###
 angular.module('ngStorage', [])
 
-.provider 'ngStorage', ()->
+.provider 'storageSettings', ()->
+    storageSettings = null
     @setPrefix = (prefix)->
         STORAGE_PREFIX = prefix or ''
         return
-    @$get = ()-> {
-        getPrefix: ()->
-            STORAGE_PREFIX
-    }
+
+
+    @$get = ()->
+        if !storageSettings
+            storageSettings = {
+                isBannerVisible: false
+                thirdPartyServices: []
+                getPrefix: ()->
+                    STORAGE_PREFIX
+                setBannerVisibility: (visibility)->
+                    storageSettings.isBannerVisible = visibility in [true, 'visible']
+                    return
+            }
+        storageSettings
     @
+
+
+
 
 .service '$localStorage', ($rootScope, $window, $log, $timeout)->
     _debounce = null

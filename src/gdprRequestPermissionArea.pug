@@ -1,0 +1,67 @@
+table.gdpr-request-permission-area-content
+    //- we can't use bootstrap grid b/c user can redefine grid size
+    tbody
+        tr
+            td
+                h5
+                    b(translate='') This website uses cookies and local storage
+                p.gdpr-text
+                    span(translate='') We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. You should consent to our cookies if you continue to use our website.
+                    span=' '
+                    a(ng-click="toggleDetails()", ng-switch="options.isDetailsVisible")
+                        span(translate='', ng-switch-when='true') Hide details
+                        span(translate='', ng-switch-when='false') Show details about cookies and local storage
+                .gdpr-request-permission-area-content-checkboxes
+                    .checkbox-inline(ng-repeat="service in SERVICES")
+                        label
+                            input(type='checkbox', ng-model="options.permission[service.type]")
+                            span=' '
+                            span {{service.name | translate}}
+                .gdpr-request-permission-area-content-details(ng-if="options.isDetailsVisible")
+                    uib-tabset.uib-tabset-sm(active="options.activeTab")
+                        uib-tab(ng-repeat="service in SERVICES", index="$index", heading="{{service.name | translate}}")
+                            p.gdpr-text(ng-if="service.description") {{service.description | translate}}
+                            table.table.table-striped.table-bordered.table-condensed
+                                thead
+                                    tr
+                                        th.gdpr-text(translate='') Name
+                                        th.gdpr-text(translate='') Provider
+                                        th.gdpr-text(translate='') Purpose
+                                        th.gdpr-text(translate='') Expiry
+                                        th.gdpr-text(translate='') Type
+                                tbody
+                                    tr(ng-repeat="cookie in service.cookies")
+                                        td.gdpr-text {{cookie.key}}
+                                        td.gdpr-text {{cookie.provider | translate}}
+                                        td.gdpr-text {{cookie.purpose | translate}}
+                                        td.gdpr-text {{cookie.expiry | translate}}
+                                        td.gdpr-text {{cookie.type | translate}}
+                            
+
+            td.gdpr-request-permission-area-content-btns.hidden-xs.hidden-sm
+                table
+                    body
+                        tr
+                            td
+                                button.btn.btn-default.btn-xs.btn-block(translate='', ng-click="onAccept()", translate-context='Accept cookies') Accept
+                            td.btn-separator
+                            td
+                                button.btn.btn-default.btn-xs.btn-block(ng-click="onCancel()")
+                                    span.fa.fa-times
+                                    span(translate='', translate-context='Deny cookies') Cancel
+                        tr
+                            td(colspan='3')
+                                button.btn.btn-success.btn-xs.btn-block(ng-click="onAcceptAll()")
+                                    span.fa.fa-check
+                                    span(translate='', translate-context='Accept all cookies') Accept all
+        tr.gdpr-request-permission-area-content-btns.visible-xs.visible-sm
+            td.text-center(colspan='2')
+                .btn-group
+                    button.btn.btn-default.btn-xs(translate='', ng-click="onAccept()", translate-context='Accept cookies') Accept
+                    button.btn.btn-success.btn-xs(ng-click="onAcceptAll()")
+                        span.fa.fa-check
+                        span(translate='', translate-context='Accept all cookies') Accept all
+                    button.btn.btn-default.btn-xs(ng-click="onCancel()")
+                        span.fa.fa-times
+                        span(translate='', translate-context='Deny cookies') Cancel
+    

@@ -1,36 +1,56 @@
 {
-    "name": "theiconic-ngstorage",
-    "version": "0.3.14",
-    "main": "./ngStorage.js",
-    "keywords": [
-        "angular",
-        "cookie",
-        "storage",
-        "local",
-        "localstorage",
-        "session",
-        "sessionstorage"
-    ],
-    "ignore": [
-        "CHANGELOG.md",
-        "components",
-        "node_modules",
-        "test",
-        "package.json",
-        "Gruntfile.js",
-        ".bowerrc",
-        ".gitignore",
-        ".travis.yml"
-    ],
-    "dependencies": {
-        "angular": ">=1.0.8"
+  "name": "theiconic-ngstorage",
+  "version": "0.3.14",
+  "main": "./dist/ngStorage.js",
+  "keywords": [
+    "angular",
+    "cookie",
+    "storage",
+    "local",
+    "localstorage",
+    "session",
+    "sessionstorage"
+  ],
+  "ignore": [
+    "CHANGELOG.md",
+    "components",
+    "node_modules",
+    "test",
+    "package.json",
+    "Gruntfile.js",
+    "Gruntfile.coffee",
+    "po",
+    ".bowerrc",
+    ".gitignore",
+    ".travis.yml"
+  ],
+  "dependencies": {
+    "angular": ">=1.0.8",
+    "bootstrap": "^3.3.7",
+    "angular-gettext": "2.3.10",
+    "angular-bootstrap": "^2.5.0"
+  },
+  "devDependencies": {
+    "angular-mocks": ">=1.0.8",
+    "chai": "^2.0.0"
+  },
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css"
+      ]
     },
-    "devDependencies": {
-        "angular-mocks": ">=1.0.8",
-        "chai": "^2.0.0"
+    "jquery": {
+      "main": []
     },
-    "repository": {
-        "type": "git",
-        "url": "git://github.com/theiconic/ngStorage.git"
+    "angular-bootstrap":{
+        "main":[
+            "ui-bootstrap-tpls.js"
+        ]
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/theiconic/ngStorage.git"
+  }
 }

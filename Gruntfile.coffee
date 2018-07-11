@@ -31,13 +31,25 @@ module.exports = (grunt) ->
 
     grunt.initConfig
         pkg: grunt.file.readJSON('package.json')
-        coffee: all:
-            options:
-                bare: true
-                sourceMap: true
-            files:
-                'dist/ngStorage.js': 'src/ngStorage.coffee'
-                'test/spec.js': 'test/spec.coffee'
+        coffee:
+            test:
+                options:
+                    bare: true
+                    sourceMap: true
+                files:
+                    'test/spec.js': 'test/spec.coffee'
+            src:{
+                expand: true,
+                cwd: 'src',
+                src: ['**/*.coffee'],
+                dest: 'src',
+                ext: '.js'
+            }
+        concat:
+            dist:{
+                src: ['src/module.js', 'src/directive.js']
+                dest: 'dist/ngStorage.js'
+            }
         karma:
             storages:
                 options: files: [
@@ -79,6 +91,55 @@ module.exports = (grunt) ->
             build:
                 src: 'dist/ngStorage.js'
                 dest: 'dist/ngStorage.min.js'
+        wiredep:
+            index: {
+                src: [ './doc/*' ],
+                options: {
+                    cwd: './',
+                    ignorePath: '..',
+                    #ignorePath: '../bower_components',
+                    dependencies: true,
+                    devDependencies: false,
+                    bowerJson: grunt.file.readJSON('./bower.json')
+                }
+            },
+        'http-server':
+            dev: {
+                root: './'
+                port: 8000
+                host: 'localhost'
+                ext: 'html'
+                runInBackground: false
+            }
+        watch:
+            dev:{
+                files: ['src/*.js', 'doc/*.js', 'doc/*.pug']
+                tasks: ['wiredep', 'replace']
+            }
+        replace:
+            options:{},
+            files:{
+                expand: true,
+                cwd: 'src',
+                src: ['**/*.js', '**/*.html'],
+                dest: 'src',
+            }
+        angular_template_inline_js:
+            options:{
+                basePath: __dirname
+            },
+            files:{
+                cwd: 'src',
+                expand: true,
+                src: ['*.js'],
+                dest: 'src'
+            }
+        nggettext_extract:
+            pot: {
+                files: {
+                    'po/template.pot': ['src/**/*html', 'src/**/*.js']
+                }
+            }
 
 
     grunt.loadNpmTasks 'grunt-karma'
@@ -86,14 +147,30 @@ module.exports = (grunt) ->
     grunt.loadNpmTasks 'grunt-contrib-coffee'
     grunt.loadNpmTasks 'grunt-ng-annotate'
     grunt.loadNpmTasks 'grunt-file-append'
+    grunt.loadNpmTasks 'grunt-wiredep'
+    grunt.loadNpmTasks 'grunt-http-server'
+    grunt.loadNpmTasks 'grunt-simple-watch'
+    grunt.loadNpmTasks 'grunt-replace'
+    grunt.loadNpmTasks 'grunt-contrib-concat'
+    grunt.loadNpmTasks 'grunt-angular-template-inline-js'
+    grunt.loadNpmTasks 'grunt-angular-gettext'
 
     grunt.registerTask 'test', [
         'coffee'
+        'replace'
+        'angular_template_inline_js'
+        'ngAnnotate'
+        'concat'
+        'file_append'
         'karma'
     ]
     grunt.registerTask 'build', [
         'coffee'
+        'nggettext_extract'
+        'replace'
+        'angular_template_inline_js'
         'ngAnnotate'
+        'concat'
         'file_append'
         'uglify'
     ]
