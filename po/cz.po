@@ -24,7 +24,7 @@ msgstr "Přijmout vše"
 
 #: src/gdprRequestPermissionArea.html:52 src/gdprRequestPermissionArea.html:69
 msgctxt "Deny cookies"
-msgid "Cancel"
+msgid "Deny"
 msgstr "Zrušit cookies"
 
 #: src/gdprRequestPermissionArea.html:25
@@ -87,6 +87,10 @@ msgstr "Tento web používá soubory cookie a místní úložiště"
 msgid "Type"
 msgstr "Typ"
 
+#: src/_translate.html:1
+msgid "Value in localStorage"
+msgstr "Hodnota v localStorage"
+
 #: src/gdprRequestPermissionArea.html:7
 msgid ""
 "We use cookies to personalise content and ads, to provide social media "
@@ -96,3 +100,7 @@ msgstr ""
 "Cookies používáme k přizpůsobení obsahu a reklam, k poskytování funkcí "
 "sociálních médií a k analýze provozu. Pokud budete pokračovat v používání "
 "našich webových stránek, měli byste souhlasit s našimi soubory cookie"
+
+#~ msgctxt "Deny cookies"
+#~ msgid "Cancel"
+#~ msgstr "Zrušit cookies"

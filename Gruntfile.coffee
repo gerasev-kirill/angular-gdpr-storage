@@ -63,6 +63,10 @@ module.exports = (grunt) ->
                 src: ['src/module.js', 'src/directive.js', 'src/thirdPartyInfo/config.js', 'po/translations.js']
                 dest: 'dist/gdprStorage-withTranslations.js'
             }
+            less:{
+                src: ['src/style.less']
+                dest: 'dist/style.less'
+            }
         karma:
             storages:
                 options: files: [
@@ -166,7 +170,7 @@ module.exports = (grunt) ->
         nggettext_compile:
             all: {
                 options:{
-                    module: 'gdpr.storage'
+                    module: 'storage.gdpr'
                 }
                 files: {
                     'po/translations.js': ['po/*.po']

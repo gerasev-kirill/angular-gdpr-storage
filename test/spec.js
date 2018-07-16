@@ -2,13 +2,13 @@
 
 /* global describe, beforeEach, it, module, inject, expect, chai */
 
-describe('gdpr.storage', function() {
+describe('storage.gdpr', function() {
     var expect = chai.expect,
         onlyOwnProps = function(obj){
             return JSON.parse(JSON.stringify(obj));
         };
 
-    beforeEach(module('gdpr.storage'));
+    beforeEach(module('storage.gdpr'));
 
     it('should contain a $localStorage service', inject(function(
         $localStorage

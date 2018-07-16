@@ -179,7 +179,7 @@ rmNgGdprStorageWatch = null
 # @ngdoc overview
 # @name gdpr.storage
 ###
-angular.module('gdpr.storage', [])
+angular.module('storage.gdpr', [])
 
 .provider 'storageSettings', ()->
     storageSettings = null

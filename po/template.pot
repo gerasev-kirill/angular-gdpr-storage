@@ -19,7 +19,7 @@ msgstr ""
 #: src/gdprRequestPermissionArea.html:52
 #: src/gdprRequestPermissionArea.html:69
 msgctxt "Deny cookies"
-msgid "Cancel"
+msgid "Deny"
 msgstr ""
 
 #: src/gdprRequestPermissionArea.html:25
@@ -80,6 +80,10 @@ msgstr ""
 
 #: src/gdprRequestPermissionArea.html:26
 msgid "Type"
+msgstr ""
+
+#: src/_translate.html:1
+msgid "Value in localStorage"
 msgstr ""
 
 #: src/gdprRequestPermissionArea.html:7

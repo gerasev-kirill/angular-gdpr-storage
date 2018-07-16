@@ -1,4 +1,4 @@
-angular.module('gdpr.storage')
+angular.module('storage.gdpr')
 
 
 
@@ -45,7 +45,7 @@ angular.module('gdpr.storage')
                 provider: options.provider or 'This site'
                 purpose: options.purpose or 'Settings'
                 expiry: options.expiry or 'Never'
-                type: options.type or 'Local storage'
+                type: options.type or 'Value in localStorage'
             })
 
 

@@ -24,7 +24,7 @@ msgstr "Принять все"
 
 #: src/gdprRequestPermissionArea.html:52 src/gdprRequestPermissionArea.html:69
 msgctxt "Deny cookies"
-msgid "Cancel"
+msgid "Deny"
 msgstr "Отказаться"
 
 #: src/gdprRequestPermissionArea.html:25
@@ -87,6 +87,10 @@ msgstr "Этот веб-сайт использует cookies и localStorage"
 msgid "Type"
 msgstr "Тип"
 
+#: src/_translate.html:1
+msgid "Value in localStorage"
+msgstr "Значение в localStorage"
+
 #: src/gdprRequestPermissionArea.html:7
 msgid ""
 "We use cookies to personalise content and ads, to provide social media "
@@ -97,3 +101,7 @@ msgstr ""
 "предоставления функций социальных сетей и анализа трафика. Вы должны "
 "согласиться на использование cookie, если вы желаете использовать наш веб-"
 "сайт"
+
+#~ msgctxt "Deny cookies"
+#~ msgid "Cancel"
+#~ msgstr "Отказаться"

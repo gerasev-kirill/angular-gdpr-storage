@@ -1,4 +1,4 @@
-angular.module('gdpr.storage')
+angular.module('storage.gdpr')
 
 
 .config (storageSettingsProvider)->
@@ -171,9 +171,14 @@ angular.module('gdpr.storage')
         }
     ]
 
-    storageSettingsProvider.registerThirdPartyServiceLiteral('ga', {
-        type: 'ga'
+    storageSettingsProvider.registerThirdPartyServiceLiteral('googleAnalytics', {
+        type: 'googleAnalytics'
         name: 'Google Analytics'
+        cookies: GA
+    })
+    storageSettingsProvider.registerThirdPartyServiceLiteral('googleTagManager', {
+        type: 'googleTagManager'
+        name: 'Google Tag Manager'
         cookies: GA
     })
     storageSettingsProvider.registerThirdPartyServiceLiteral('jivosite', {

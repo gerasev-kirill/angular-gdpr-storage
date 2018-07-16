@@ -39,7 +39,7 @@ Usage
 
 ```javascript
 angular.module('app', [
-    'gdpr.storage'
+    'storage.gdpr'
 ]).controller('Ctrl', function(
     $scope,
     $gdprStorage,
