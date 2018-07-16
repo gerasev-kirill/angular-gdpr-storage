@@ -1,6 +1,7 @@
 angular.module('IndexApp', ['gettext', 'ngStorage', 'ui.bootstrap'])
 
-.controller 'BodyCtrl', ($scope)->
+.controller 'BodyCtrl', ($scope, storageSettings)->
+    storageSettings.thirdPartyServices = ['ga', 'jivosite']
     return
 
 
