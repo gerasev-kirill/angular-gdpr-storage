@@ -1,3 +1,8 @@
+### 0.9.0 / 2018.07.16
+* [+] $gdprStorage
+
+---
+
 ### 0.3.9 / 2015.07.06
 * Optimize for minified size
 

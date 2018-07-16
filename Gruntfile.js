@@ -100,7 +100,7 @@
       },
       uglify: {
         options: {
-          banner: '/*! <%= pkg.name %> <%= pkg.version %> | Copyright (c) <%= grunt.template.today("yyyy") %> Gias Kay Lee | MIT License */\n'
+          banner: '/*! <%= pkg.name %> <%= pkg.version %> | Copyright (c) <%= grunt.template.today("yyyy") %> Gerasev Kirill | MIT License | Copyright (c) 2015 Gias Kay Lee | MIT License */\n'
         },
         build: {
           src: 'dist/gdprStorage.js',

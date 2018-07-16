@@ -106,7 +106,7 @@ module.exports = (grunt) ->
                 output: 'dist/gdprStorage-withTranslations.js'
                 } ]
         uglify:
-            options: banner: '/*! <%= pkg.name %> <%= pkg.version %> | Copyright (c) <%= grunt.template.today("yyyy") %> Gias Kay Lee | MIT License */\n'
+            options: banner: '/*! <%= pkg.name %> <%= pkg.version %> | Copyright (c) <%= grunt.template.today("yyyy") %> Gerasev Kirill | MIT License | Copyright (c) 2015 Gias Kay Lee | MIT License */\n'
             build:
                 src: 'dist/gdprStorage.js'
                 dest: 'dist/gdprStorage.min.js'
