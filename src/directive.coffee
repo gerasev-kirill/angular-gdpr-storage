@@ -31,6 +31,7 @@ angular.module('ngStorage')
     restrict: 'E'
     scope:{}
     controller: ($scope, $rootScope, $timeout, $gdprStorage, storageSettings) ->
+        $scope.storageSettings = storageSettings
         $scope.options = {
             permission: angular.copy($gdprStorage.gdprPermission)
             isDetailsVisible: false
@@ -48,13 +49,18 @@ angular.module('ngStorage')
             })
 
 
-        $scope.$watch 'storageSettings.thirdPartyServices', (thirdPartyServices, oldValue)->
-            $scope.SERVICES = thirdPartyServices or []
-            $scope.SERVICES.unshift({
+        $scope.$watchCollection 'storageSettings.thirdPartyServices', (thirdPartyServices, oldValue)->
+            $scope.SERVICES = [{
                 type: 'app'
                 name: 'Site settings'
                 cookies: appCookies
-            })
+            }]
+            literals = storageSettings.getThirdPartyLiterals()
+            for s in thirdPartyServices or []
+                if angular.isString(s) and literals[s]
+                    $scope.SERVICES.push(literals[s])
+                else if angular.isObject(s)
+                    $scope.SERVICES.push(s)
             return
 
         $rootScope.$on 'storage.gdpr.update', ()->
@@ -74,9 +80,8 @@ angular.module('ngStorage')
             return
 
         $scope.onAcceptAll = () ->
-            $scope.SERVICES.forEach (service)->
+            for service in $scope.SERVICES or []
                 $scope.options.permission[service.type] = true
-                return
             $timeout($scope.onAccept, 700)
             return
 

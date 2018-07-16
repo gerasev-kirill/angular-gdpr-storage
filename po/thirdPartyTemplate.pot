@@ -1,0 +1,184 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "1 minute"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "10 minutes"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "12 hours from set/update"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "18 months"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "2 years"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "2 years from set/update"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "24 hours"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "30 mins from set/update"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "30 seconds to 1 year"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "6 months from set/update"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "90 days"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "Cash of callback backend script response"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "City of the visitor"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Contains a token that can be used to retrieve a Client ID from AMP Client ID service. Other possible values indicate opt-out, inflight request or an error retrieving a Client ID from AMP Client ID service"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Contains campaign related information for the user"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "Country of the visitor"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Depends on the length of the experiment but typically 90 days"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "First visit to the website"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "Flag that enables long_pooling"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "ID of the marketing campaign of the visit"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "Indication if iframe is forbidden"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "Number of pages viewed"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "Number of visits to the website"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "Source of entry to the website"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Stores the traffic source or campaign that explains how the user reached your site. The cookie is created when the javascript library executes and is updated every time data is sent to Google Analytics"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "Time of appearance of proactive invitation"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "Time the callback request was initiated"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "Time the widget was closed"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Used to determine a user's inclusion in an experiment"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Used to determine a user's inclusion in an experiment and the expiry of experiments a user has been included in"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Used to determine new sessions/visits. The cookie is created when the javascript library executes and no existing __utmb cookies exists. The cookie is updated every time data is sent to Google Analytics"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Used to determine the expiry of experiments a user has been included in"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Used to distinguish users"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Used to distinguish users and sessions. The cookie is created when the javascript library executes and no existing __utma cookies exists. The cookie is updated every time data is sent to Google Analytics"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Used to store visitor-level custom variable data"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Used to throttle request rate"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "ga"
+msgid "Used to throttle request rate. If Google Analytics is deployed via Google Tag Manager, this cookie will be named _dc_gtm_%property-id%"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgctxt "jivosite"
+msgid "a/b testing group flag"
+msgstr ""

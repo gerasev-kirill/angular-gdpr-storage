@@ -30,6 +30,10 @@ msgstr ""
 msgid "GDPR permission data for site"
 msgstr ""
 
+#: src/_translate.html:1
+msgid "HTTP cookie"
+msgstr ""
+
 #: src/gdprRequestPermissionArea.html:7
 msgid "Hide details"
 msgstr ""

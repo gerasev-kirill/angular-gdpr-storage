@@ -183,8 +183,13 @@ angular.module('ngStorage', [])
 
 .provider 'storageSettings', ()->
     storageSettings = null
+    thirdPartyLiterals = {}
     @setPrefix = (prefix)->
         STORAGE_PREFIX = prefix or ''
+        return
+
+    @registerThirdPartyServiceLiteral = (literalName, config)->
+        thirdPartyLiterals[literalName] = config or []
         return
 
 
@@ -198,6 +203,8 @@ angular.module('ngStorage', [])
                 setBannerVisibility: (visibility)->
                     storageSettings.isBannerVisible = visibility in [true, 'visible']
                     return
+                getThirdPartyLiterals: ()->
+                    angular.copy(thirdPartyLiterals)
             }
         storageSettings
     @

@@ -6,8 +6,6 @@ components
 .tmp
 .DS_Store
 .idea
-src/*.js
-src/*.html
-src/*.css
 po/*.mo
+po/*.js
 *.js.map

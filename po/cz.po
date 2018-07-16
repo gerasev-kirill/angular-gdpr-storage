@@ -1,0 +1,94 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: ngstorage\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Language: cz\n"
+
+#: src/gdprRequestPermissionArea.html:48 src/gdprRequestPermissionArea.html:67
+msgctxt "Accept cookies"
+msgid "Accept"
+msgstr "Akceptovat"
+
+#: src/gdprRequestPermissionArea.html:57 src/gdprRequestPermissionArea.html:68
+msgctxt "Accept all cookies"
+msgid "Accept all"
+msgstr "Přijmout vše"
+
+#: src/gdprRequestPermissionArea.html:52 src/gdprRequestPermissionArea.html:69
+msgctxt "Deny cookies"
+msgid "Cancel"
+msgstr "Zrušit cookies"
+
+#: src/gdprRequestPermissionArea.html:25
+msgid "Expiry"
+msgstr "Uplynutí"
+
+#: src/_translate.html:1
+msgid "GDPR permission data for site"
+msgstr "Údaje o oprávnění GDPR pro web"
+
+#: src/gdprRequestPermissionArea.html:7
+msgid "Hide details"
+msgstr "Skrýt detaily"
+
+#: src/_translate.html:1
+msgid "Local storage"
+msgstr "Místní (local) úložiště"
+
+#: src/gdprRequestPermissionArea.html:22
+msgid "Name"
+msgstr "Jméno"
+
+#: src/_translate.html:1
+msgid "Never"
+msgstr "Nikdy"
+
+#: src/gdprRequestPermissionArea.html:23
+msgid "Provider"
+msgstr "Poskytovatel"
+
+#: src/gdprRequestPermissionArea.html:24
+msgid "Purpose"
+msgstr "Účel"
+
+#: src/_translate.html:1
+msgid "Settings"
+msgstr "Nastavení"
+
+#: src/gdprRequestPermissionArea.html:7
+msgid "Show details about cookies and local storage"
+msgstr "Zobrazit podrobnosti o souborech cookie a místním úložišti"
+
+#: src/_translate.html:1
+msgid "Site settings"
+msgstr "Nastavení webu"
+
+#: src/_translate.html:1
+msgid "This site"
+msgstr "Tento web"
+
+#: src/gdprRequestPermissionArea.html:6
+msgid "This website uses cookies and local storage"
+msgstr "Tento web používá soubory cookie a místní úložiště"
+
+#: src/gdprRequestPermissionArea.html:26
+msgid "Type"
+msgstr "Typ"
+
+#: src/gdprRequestPermissionArea.html:7
+msgid ""
+"We use cookies to personalise content and ads, to provide social media "
+"features and to analyse our traffic. You should consent to our cookies if "
+"you continue to use our website"
+msgstr ""
+"Cookies používáme k přizpůsobení obsahu a reklam, k poskytování funkcí "
+"sociálních médií a k analýze provozu. Pokud budete pokračovat v používání "
+"našich webových stránek, měli byste souhlasit s našimi soubory cookie"

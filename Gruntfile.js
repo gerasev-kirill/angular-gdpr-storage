@@ -12,6 +12,9 @@
     grunt.initConfig({
       pkg: grunt.file.readJSON('package.json'),
       coffee: {
+        options: {
+          bare: true
+        },
         test: {
           options: {
             bare: true,
@@ -27,12 +30,23 @@
           src: ['**/*.coffee'],
           dest: 'src',
           ext: '.js'
+        },
+        srcThirdPartyInfo: {
+          expand: true,
+          cwd: 'src/thirdPartyInfo',
+          src: ['**/*.coffee'],
+          dest: 'src/thirdPartyInfo',
+          ext: '.js'
         }
       },
       concat: {
         dist: {
-          src: ['src/module.js', 'src/directive.js'],
+          src: ['src/module.js', 'src/directive.js', 'src/thirdPartyInfo/config.js'],
           dest: 'dist/ngStorage.js'
+        },
+        distWithTranslations: {
+          src: ['src/module.js', 'src/directive.js', 'src/thirdPartyInfo/config.js', 'po/translations.js'],
+          dest: 'dist/ngStorageWithTranslations.js'
         }
       },
       karma: {
@@ -75,6 +89,11 @@
               append: jsBottomWrapper,
               input: 'dist/ngStorage.js',
               output: 'dist/ngStorage.js'
+            }, {
+              prepend: jsTopWrapper,
+              append: jsBottomWrapper,
+              input: 'dist/ngStorageWithTranslations.js',
+              output: 'dist/ngStorageWithTranslations.js'
             }
           ]
         }
@@ -86,6 +105,10 @@
         build: {
           src: 'dist/ngStorage.js',
           dest: 'dist/ngStorage.min.js'
+        },
+        buildWithTranslations: {
+          src: 'dist/ngStorageWithTranslations.js',
+          dest: 'dist/ngStorageWithTranslations.min.js'
         }
       },
       wiredep: {
@@ -138,7 +161,18 @@
       nggettext_extract: {
         pot: {
           files: {
-            'po/template.pot': ['src/**/*html', 'src/**/*.js']
+            'po/template.pot': ['src/*html', 'src/*.js'],
+            'po/thirdPartyTemplate.pot': ['src/thirdPartyInfo/*html', 'src/thirdPartyInfo/*.js']
+          }
+        }
+      },
+      nggettext_compile: {
+        all: {
+          options: {
+            module: 'ngStorage'
+          },
+          files: {
+            'po/translations.js': ['po/*.po']
           }
         }
       }
@@ -156,7 +190,7 @@
     grunt.loadNpmTasks('grunt-angular-template-inline-js');
     grunt.loadNpmTasks('grunt-angular-gettext');
     grunt.registerTask('test', ['coffee', 'replace', 'angular_template_inline_js', 'ngAnnotate', 'concat', 'file_append', 'karma']);
-    grunt.registerTask('build', ['coffee', 'nggettext_extract', 'replace', 'angular_template_inline_js', 'ngAnnotate', 'concat', 'file_append', 'uglify']);
+    grunt.registerTask('build', ['coffee', 'nggettext_extract', 'replace', 'angular_template_inline_js', 'ngAnnotate', 'nggettext_compile', 'concat', 'file_append', 'uglify']);
     grunt.registerTask('default', ['coffee', 'test', 'ngAnnotate', 'uglify']);
   };
 

@@ -1,0 +1,95 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: ngstorage\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"Language: ru\n"
+
+#: src/gdprRequestPermissionArea.html:48 src/gdprRequestPermissionArea.html:67
+msgctxt "Accept cookies"
+msgid "Accept"
+msgstr "Принять"
+
+#: src/gdprRequestPermissionArea.html:57 src/gdprRequestPermissionArea.html:68
+msgctxt "Accept all cookies"
+msgid "Accept all"
+msgstr "Принять все"
+
+#: src/gdprRequestPermissionArea.html:52 src/gdprRequestPermissionArea.html:69
+msgctxt "Deny cookies"
+msgid "Cancel"
+msgstr "Отказаться"
+
+#: src/gdprRequestPermissionArea.html:25
+msgid "Expiry"
+msgstr "Истечение срока"
+
+#: src/_translate.html:1
+msgid "GDPR permission data for site"
+msgstr "GDPR разрешение для сайта"
+
+#: src/gdprRequestPermissionArea.html:7
+msgid "Hide details"
+msgstr "Скрыть детали"
+
+#: src/_translate.html:1
+msgid "Local storage"
+msgstr "Местное хранилище (localStorage)"
+
+#: src/gdprRequestPermissionArea.html:22
+msgid "Name"
+msgstr "Название"
+
+#: src/_translate.html:1
+msgid "Never"
+msgstr "Никогда"
+
+#: src/gdprRequestPermissionArea.html:23
+msgid "Provider"
+msgstr "Провайдер"
+
+#: src/gdprRequestPermissionArea.html:24
+msgid "Purpose"
+msgstr "Назначение"
+
+#: src/_translate.html:1
+msgid "Settings"
+msgstr "Настройки"
+
+#: src/gdprRequestPermissionArea.html:7
+msgid "Show details about cookies and local storage"
+msgstr "Показать детали о cookies и localStorage"
+
+#: src/_translate.html:1
+msgid "Site settings"
+msgstr "Настройки сайта"
+
+#: src/_translate.html:1
+msgid "This site"
+msgstr "Этот сайт"
+
+#: src/gdprRequestPermissionArea.html:6
+msgid "This website uses cookies and local storage"
+msgstr "Этот веб-сайт использует cookies и localStorage"
+
+#: src/gdprRequestPermissionArea.html:26
+msgid "Type"
+msgstr "Тип"
+
+#: src/gdprRequestPermissionArea.html:7
+msgid ""
+"We use cookies to personalise content and ads, to provide social media "
+"features and to analyse our traffic. You should consent to our cookies if "
+"you continue to use our website"
+msgstr ""
+"Мы используем файлы cookie для персонализации контента и рекламы, "
+"предоставления функций социальных сетей и анализа трафика. Вы должны "
+"согласиться на использование cookie, если вы желаете использовать наш веб-"
+"сайт"

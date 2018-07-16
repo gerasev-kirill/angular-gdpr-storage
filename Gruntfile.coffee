@@ -32,6 +32,8 @@ module.exports = (grunt) ->
     grunt.initConfig
         pkg: grunt.file.readJSON('package.json')
         coffee:
+            options:
+                bare: true
             test:
                 options:
                     bare: true
@@ -45,10 +47,21 @@ module.exports = (grunt) ->
                 dest: 'src',
                 ext: '.js'
             }
+            srcThirdPartyInfo:{
+                expand: true,
+                cwd: 'src/thirdPartyInfo',
+                src: ['**/*.coffee'],
+                dest: 'src/thirdPartyInfo',
+                ext: '.js'
+            }
         concat:
             dist:{
-                src: ['src/module.js', 'src/directive.js']
+                src: ['src/module.js', 'src/directive.js', 'src/thirdPartyInfo/config.js']
                 dest: 'dist/ngStorage.js'
+            }
+            distWithTranslations:{
+                src: ['src/module.js', 'src/directive.js', 'src/thirdPartyInfo/config.js', 'po/translations.js']
+                dest: 'dist/ngStorageWithTranslations.js'
             }
         karma:
             storages:
@@ -80,17 +93,26 @@ module.exports = (grunt) ->
             expand: true
             src: [ './ngStorage.js' ]
             dest: 'dist'
-        file_append: ngstorage: files: [ {
-            prepend: jsTopWrapper
-            append: jsBottomWrapper
-            input: 'dist/ngStorage.js'
-            output: 'dist/ngStorage.js'
-        } ]
+        file_append: ngstorage:
+            files: [ {
+                prepend: jsTopWrapper
+                append: jsBottomWrapper
+                input: 'dist/ngStorage.js'
+                output: 'dist/ngStorage.js'
+            },{
+                prepend: jsTopWrapper
+                append: jsBottomWrapper
+                input: 'dist/ngStorageWithTranslations.js'
+                output: 'dist/ngStorageWithTranslations.js'
+                } ]
         uglify:
             options: banner: '/*! <%= pkg.name %> <%= pkg.version %> | Copyright (c) <%= grunt.template.today("yyyy") %> Gias Kay Lee | MIT License */\n'
             build:
                 src: 'dist/ngStorage.js'
                 dest: 'dist/ngStorage.min.js'
+            buildWithTranslations:
+                src: 'dist/ngStorageWithTranslations.js'
+                dest: 'dist/ngStorageWithTranslations.min.js'
         wiredep:
             index: {
                 src: [ './doc/*' ],
@@ -137,7 +159,17 @@ module.exports = (grunt) ->
         nggettext_extract:
             pot: {
                 files: {
-                    'po/template.pot': ['src/**/*html', 'src/**/*.js']
+                    'po/template.pot': ['src/*html', 'src/*.js']
+                    'po/thirdPartyTemplate.pot': ['src/thirdPartyInfo/*html', 'src/thirdPartyInfo/*.js']
+                }
+            }
+        nggettext_compile:
+            all: {
+                options:{
+                    module: 'ngStorage'
+                }
+                files: {
+                    'po/translations.js': ['po/*.po']
                 }
             }
 
@@ -170,6 +202,7 @@ module.exports = (grunt) ->
         'replace'
         'angular_template_inline_js'
         'ngAnnotate'
+        'nggettext_compile'
         'concat'
         'file_append'
         'uglify'
