@@ -1,6 +1,6 @@
 {
   "name": "angular-gdpr-storage",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "main": "./dist/gdprStorage.js",
   "keywords": [
     "angular",

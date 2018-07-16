@@ -29,20 +29,30 @@ getStorageKey = function(key) {
 };
 
 generateStorageFactory = function($rootScope, $window, $log, $timeout, storageType, preferredStorageType, allowedKeysForGdpr) {
-  var $storage, _debounce, _last$storage, getStorage, signalState;
+  var $storage, _debounce, _last$storage, fromJson, getStorage, signalState, toJson;
   _debounce = null;
   _last$storage = null;
   allowedKeysForGdpr = allowedKeysForGdpr || {};
+  toJson = angular.toJson;
+  fromJson = function(data) {
+    var error, error1;
+    try {
+      return angular.fromJson(data);
+    } catch (error1) {
+      error = error1;
+      return void 0;
+    }
+  };
   getStorage = function(storageType) {
-    var err, error, error1, key, supported;
+    var err, error1, error2, key, supported;
     if (storageType === 'gdprStorage') {
       storageType = preferredStorageType;
     }
     supported = void 0;
     try {
       supported = $window[storageType];
-    } catch (error) {
-      err = error;
+    } catch (error1) {
+      err = error1;
       supported = false;
     }
     if (supported && storageType === 'localStorage') {
@@ -50,8 +60,8 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
       try {
         supported.setItem(key, key);
         supported.removeItem(key);
-      } catch (error1) {
-        err = error1;
+      } catch (error2) {
+        err = error2;
         supported = false;
       }
     }
@@ -91,7 +101,7 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
       return $storage.$default(items);
     },
     $sync: function() {
-      var $storageKey, k, webStorage;
+      var $storageKey, k, value, webStorage;
       webStorage = getStorage(storageType);
       for (k in webStorage) {
         if (!(k && k.indexOf(STORAGE_PREFIX) === 0)) {
@@ -101,10 +111,15 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
         if (storageType === 'gdprStorage' && !allowedKeysForGdpr[$storageKey]) {
           continue;
         }
+        value = fromJson(webStorage.getItem(k));
         if (storageType === 'gdprStorage' && $storageKey === 'gdprPermission') {
-          $storage.$setPermission(angular.fromJson(webStorage.getItem(k)));
+          $storage.$setPermission(value);
         } else {
-          $storage[$storageKey] = angular.fromJson(webStorage.getItem(k));
+          if (angular.isDefined(value)) {
+            $storage[$storageKey] = value;
+          } else {
+            delete $storage[$storageKey];
+          }
         }
       }
     },
@@ -123,7 +138,7 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
           if (storageType === 'gdprStorage' && !allowedKeysForGdpr[k]) {
             throw new GdprException("You can't assign key '" + k + "' for $gdprStorage! Please register key '" + k + "' inside config block with this: $gdprStorageProvider.registerKey('" + k + "')");
           }
-          webStorage.setItem(STORAGE_PREFIX + k, angular.toJson(v));
+          webStorage.setItem(STORAGE_PREFIX + k, toJson(v));
           delete temp$storage[k];
         }
         for (k in temp$storage) {
@@ -142,7 +157,7 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
     };
     signalState = 'none';
     $storage.$setPermission = function(permission) {
-      var $storageKey, k, newStorage, oldStorage, sType, v;
+      var $storageKey, k, newStorage, oldStorage, sType, v, value;
       permission = permission || {};
       permission.app = !!permission.app;
       if (permission.app) {
@@ -160,7 +175,7 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
       }
       oldStorage = getStorage(preferredStorageType);
       newStorage = getStorage(sType);
-      newStorage.setItem(STORAGE_PREFIX + 'gdprPermission', angular.toJson(permission));
+      newStorage.setItem(STORAGE_PREFIX + 'gdprPermission', toJson(permission));
       if (sType === preferredStorageType) {
         return;
       }
@@ -181,7 +196,10 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
           continue;
         }
         $storageKey = getStorageKey(k);
-        $storage[$storageKey] = angular.fromJson(newStorage.getItem(k));
+        value = fromJson(newStorage.getItem(k));
+        if (angular.isDefined(value)) {
+          $storage[$storageKey] = value;
+        }
       }
       preferredStorageType = sType;
     };
@@ -189,14 +207,15 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
   $storage.$sync();
   _last$storage = angular.copy($storage);
   $window.addEventListener('storage', function(event) {
-    var $storageKey;
+    var $storageKey, value;
     if (!event || !event.key || event.storageArea !== getStorage(storageType)) {
       return;
     }
     $storageKey = getStorageKey(event.key);
     if (event.key === STORAGE_PREFIX + $storageKey) {
-      if (event.newValue) {
-        $storage[$storageKey] = angular.fromJson(event.newValue);
+      value = fromJson(event.newValue);
+      if (angular.isDefined(value)) {
+        $storage[$storageKey] = value;
       } else {
         delete $storage[$storageKey];
       }

@@ -20,6 +20,12 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
     _debounce = null
     _last$storage = null
     allowedKeysForGdpr = allowedKeysForGdpr or {}
+    toJson = angular.toJson
+    fromJson = (data)->
+        try
+            return angular.fromJson(data)
+        catch error
+            return undefined
 
     getStorage = (storageType) ->
         if storageType == 'gdprStorage'
@@ -75,10 +81,14 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
                 $storageKey = getStorageKey(k)
                 if storageType == 'gdprStorage' and !allowedKeysForGdpr[$storageKey]
                     continue
+                value = fromJson(webStorage.getItem(k))
                 if storageType == 'gdprStorage' and $storageKey == 'gdprPermission'
-                    $storage.$setPermission(angular.fromJson(webStorage.getItem(k)))
+                    $storage.$setPermission(value)
                 else
-                    $storage[$storageKey] = angular.fromJson(webStorage.getItem(k))
+                    if angular.isDefined(value)
+                        $storage[$storageKey] = value
+                    else
+                        delete $storage[$storageKey]
             return
         $apply: ()->
             _debounce = null
@@ -89,10 +99,10 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
                 for k,v of $storage when angular.isDefined(v) and k[0] != '$'
                     if storageType == 'gdprStorage' and !allowedKeysForGdpr[k]
                         throw new GdprException("""You can't assign key '#{k}' for $gdprStorage! Please register key '#{k}' inside config block with this: $gdprStorageProvider.registerKey('#{k}')""")
-                    webStorage.setItem(STORAGE_PREFIX + k, angular.toJson(v))
+                    webStorage.setItem(STORAGE_PREFIX + k, toJson(v))
                     delete temp$storage[k]
                 for k of temp$storage
-                    webStorage.removeItem STORAGE_PREFIX + k
+                    webStorage.removeItem(STORAGE_PREFIX + k)
                 _last$storage = angular.copy  ($storage)
             return
     }
@@ -120,7 +130,7 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
             # migrate from one storage to other
             oldStorage = getStorage(preferredStorageType)
             newStorage = getStorage(sType)
-            newStorage.setItem(STORAGE_PREFIX + 'gdprPermission', angular.toJson(permission))
+            newStorage.setItem(STORAGE_PREFIX + 'gdprPermission', toJson(permission))
             if sType == preferredStorageType
                 return
             if oldStorage
@@ -131,7 +141,9 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
             # update all values from new storage
             for k of newStorage when k and k.indexOf(STORAGE_PREFIX) == 0
                 $storageKey = getStorageKey(k)
-                $storage[$storageKey] = angular.fromJson(newStorage.getItem(k))
+                value = fromJson(newStorage.getItem(k))
+                if angular.isDefined(value)
+                    $storage[$storageKey] = value
             # save storage type
             preferredStorageType = sType
             return
@@ -147,8 +159,9 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
             return
         $storageKey = getStorageKey(event.key)
         if event.key == STORAGE_PREFIX + $storageKey
-            if event.newValue
-                $storage[$storageKey] = angular.fromJson(event.newValue)
+            value = fromJson(event.newValue)
+            if angular.isDefined(value)
+                $storage[$storageKey] = value
             else
                 delete $storage[$storageKey]
             _last$storage = angular.copy  ($storage)
