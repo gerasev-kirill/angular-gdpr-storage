@@ -57,11 +57,11 @@ module.exports = (grunt) ->
         concat:
             dist:{
                 src: ['src/module.js', 'src/directive.js', 'src/thirdPartyInfo/config.js']
-                dest: 'dist/ngStorage.js'
+                dest: 'dist/gdprStorage.js'
             }
             distWithTranslations:{
                 src: ['src/module.js', 'src/directive.js', 'src/thirdPartyInfo/config.js', 'po/translations.js']
-                dest: 'dist/ngStorageWithTranslations.js'
+                dest: 'dist/gdprStorage-withTranslations.js'
             }
         karma:
             storages:
@@ -69,7 +69,7 @@ module.exports = (grunt) ->
                     'components/angular/angular.js'
                     'components/angular-mocks/angular-mocks.js'
                     'components/chai/chai.js'
-                    'dist/ngStorage.js'
+                    'dist/gdprStorage.js'
                     'test/spec.js'
                 ]
                 preprocessors: 'dist/*.js': [ 'sourcemap' ]
@@ -81,7 +81,7 @@ module.exports = (grunt) ->
                     'components/angular/angular.js'
                     'components/angular-mocks/angular-mocks.js'
                     'components/chai/chai.js'
-                    'dist/ngStorage.js'
+                    'dist/gdprStorage.js'
                     'test/gdprSpec.js'
                 ]
                 preprocessors: 'dist/*.js': [ 'sourcemap' ]
@@ -91,28 +91,28 @@ module.exports = (grunt) ->
         ngAnnotate: files:
             cwd: 'dist'
             expand: true
-            src: [ './ngStorage.js' ]
+            src: [ './gdprStorage.js' ]
             dest: 'dist'
-        file_append: ngstorage:
+        file_append: gdprStorage:
             files: [ {
                 prepend: jsTopWrapper
                 append: jsBottomWrapper
-                input: 'dist/ngStorage.js'
-                output: 'dist/ngStorage.js'
+                input: 'dist/gdprStorage.js'
+                output: 'dist/gdprStorage.js'
             },{
                 prepend: jsTopWrapper
                 append: jsBottomWrapper
-                input: 'dist/ngStorageWithTranslations.js'
-                output: 'dist/ngStorageWithTranslations.js'
+                input: 'dist/gdprStorage-withTranslations.js'
+                output: 'dist/gdprStorage-withTranslations.js'
                 } ]
         uglify:
             options: banner: '/*! <%= pkg.name %> <%= pkg.version %> | Copyright (c) <%= grunt.template.today("yyyy") %> Gias Kay Lee | MIT License */\n'
             build:
-                src: 'dist/ngStorage.js'
-                dest: 'dist/ngStorage.min.js'
+                src: 'dist/gdprStorage.js'
+                dest: 'dist/gdprStorage.min.js'
             buildWithTranslations:
-                src: 'dist/ngStorageWithTranslations.js'
-                dest: 'dist/ngStorageWithTranslations.min.js'
+                src: 'dist/gdprStorage-withTranslations.js'
+                dest: 'dist/gdprStorage-withTranslations.min.js'
         wiredep:
             index: {
                 src: [ './doc/*' ],
@@ -166,7 +166,7 @@ module.exports = (grunt) ->
         nggettext_compile:
             all: {
                 options:{
-                    module: 'ngStorage'
+                    module: 'gdpr.storage'
                 }
                 files: {
                     'po/translations.js': ['po/*.po']

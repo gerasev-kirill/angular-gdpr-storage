@@ -1,11 +1,11 @@
-ngStorage
+gdpr.storage
 =========
 
-[![Build Status](https://travis-ci.org/gsklee/ngStorage.svg)](https://travis-ci.org/gsklee/ngStorage)
-[![Dependency Status](https://david-dm.org/gsklee/ngStorage.svg)](https://david-dm.org/gsklee/ngStorage)
-[![devDependency Status](https://david-dm.org/gsklee/ngStorage/dev-status.svg)](https://david-dm.org/gsklee/ngStorage#info=devDependencies)
+[![Build Status](https://travis-ci.org/gerasev-kirill/angular-gdpr-storage.svg)](https://travis-ci.org/gerasev-kirill/angular-gdpr-storage)
+[![Dependency Status](https://david-dm.org/gerasev-kirill/angular-gdpr-storage.svg)](https://david-dm.org/gerasev-kirill/angular-gdpr-storage)
+[![devDependency Status](https://david-dm.org/gerasev-kirill/angular-gdpr-storage/dev-status.svg)](https://david-dm.org/gerasev-kirill/angular-gdpr-storage#info=devDependencies)
 
-An [AngularJS](https://github.com/angular/angular.js) module that makes Web Storage working in the *Angular Way*. Contains two services: `$localStorage` and `$sessionStorage`.
+An [AngularJS](https://github.com/angular/angular.js) module that makes Web Storage working in the *Angular Way*. Contains three services: `$gdprStorage`, `$localStorage` and `$sessionStorage`.
 
 ### Differences with Other Implementations
 
@@ -23,50 +23,26 @@ Install
 ### Bower
 
 ```bash
-bower install ngstorage
+bower install https://github.com/gerasev-kirill/angular-gdpr-storage.git
 ```
-
-*NOTE:* We are `ngstorage` and *NOT* `ngStorage`. The casing is important!
 
 ### NPM
 ```bash
-npm install ngstorage
+npm install https://github.com/gerasev-kirill/angular-gdpr-storage.git
 ```
 
-*NOTE:* We are `ngstorage` and *NOT* `ngStorage`. The casing is important!
-
-CDN
-===
-
-### cdnjs
-cdnjs now hosts ngStorage at <https://cdnjs.com/libraries/ngStorage>
-
-To use it
-
-``` html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
-```
-
-### jsDelivr
-
-jsDelivr hosts ngStorage at <http://www.jsdelivr.com/#!ngstorage>
-
-To use is
-
-``` html
-<script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
-```
 
 Usage
 =====
 
-### Require ngStorage and Inject the Services
+### Require gdpr.storage and Inject the Services
 
 ```javascript
 angular.module('app', [
-    'ngStorage'
+    'gdpr.storage'
 ]).controller('Ctrl', function(
     $scope,
+    $gdprStorage,
     $localStorage,
     $sessionStorage
 ){});
@@ -74,10 +50,10 @@ angular.module('app', [
 
 ### Read and Write | [Demo](http://plnkr.co/edit/3vfRkvG7R9DgQxtWbGHz?p=preview)
 
-Pass `$localStorage` (or `$sessionStorage`) by reference to a hook under `$scope` in plain ol' JavaScript:
+Pass `$gdprStorage`, `$localStorage` (or `$sessionStorage`) by reference to a hook under `$scope` in plain ol' JavaScript:
 
 ```javascript
-$scope.$storage = $localStorage;
+$scope.$storage = $gdprStorage;
 ```
 
 And use it like you-already-know:
@@ -116,7 +92,7 @@ $scope.$watch(function() {
 });
 ```
 
-This, however, is not the way ngStorage is designed to be used with. As can be easily seen by comparing the demos, this approach is way more verbose, and may have potential performance implications as the values being watched quickly grow.
+This, however, is not the way gdpr.storage is designed to be used with. As can be easily seen by comparing the demos, this approach is way more verbose, and may have potential performance implications as the values being watched quickly grow.
 
 ### Delete | [Demo](http://plnkr.co/edit/o4w3VGqmp8opfrWzvsJy?p=preview)
 
@@ -160,7 +136,7 @@ Just run `$ npm install` to install dependencies.  Then run `$ grunt` for minifi
 
 #### Watch the watch
 
-ngStorage internally uses an Angular watch to monitor changes to the `$storage`/`$localStorage` objects. That means that a digest cycle is required to persist your new values into the browser local storage. 
+gdpr.storage internally uses an Angular watch to monitor changes to the `$storage`/`$localStorage` objects. That means that a digest cycle is required to persist your new values into the browser local storage.
 Normally this is not a problem, but, for example, if you launch a new window after saving a value...
 
 ```javascript
@@ -187,8 +163,6 @@ Todos
 =====
 
 * ngdoc Documentation
-* Namespace Support
 * Unit Tests
-* Grunt Tasks
 
 Any contribution will be appreciated.

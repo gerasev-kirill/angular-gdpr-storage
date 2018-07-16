@@ -1,7 +1,7 @@
 {
   "name": "theiconic-ngstorage",
   "version": "0.3.14",
-  "main": "./dist/ngStorage.js",
+  "main": "./dist/gdprStorage.js",
   "keywords": [
     "angular",
     "cookie",
@@ -20,6 +20,7 @@
     "Gruntfile.js",
     "Gruntfile.coffee",
     "po",
+    "src",
     ".bowerrc",
     ".gitignore",
     ".travis.yml"

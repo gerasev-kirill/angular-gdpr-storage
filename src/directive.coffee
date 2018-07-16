@@ -1,4 +1,4 @@
-angular.module('ngStorage')
+angular.module('gdpr.storage')
 
 
 

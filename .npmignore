@@ -3,5 +3,4 @@
 *
 !.gitignore
 !LICENSE
-!ngStorage.js
-!ngStorage.min.js
+!dist

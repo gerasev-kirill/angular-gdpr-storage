@@ -9,65 +9,65 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.9\n"
+"X-Generator: Poedit 1.8.7.1\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgid "1 minute"
 msgstr "1 minuta"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgid "10 minutes"
 msgstr "10 minut"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgid "12 hours from set/update"
 msgstr "12 hodin od nastavení / aktualizace"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgid "18 months"
 msgstr "8 měsíců"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgid "2 years"
 msgstr "2 roky"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgid "2 years from set/update"
 msgstr "2 roky od nastavení / aktualizace"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgid "24 hours"
 msgstr "24 hodiny"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgid "30 mins from set/update"
 msgstr "30 minut from set/update"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgid "30 seconds to 1 year"
 msgstr "30 sekund až 1 rok"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgid "6 months from set/update"
 msgstr "6 měsíců od nastavení / aktualizace"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgid "90 days"
 msgstr "90 dní"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "Cash of callback backend script response"
 msgstr "Cash callback odpovědi backend skriptu"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "City of the visitor"
 msgstr "Město návštěvníka"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid ""
 "Contains a token that can be used to retrieve a Client ID from AMP Client ID "
@@ -78,57 +78,57 @@ msgstr ""
 "ID. Jiné možné hodnoty označují opt-out, inflight request nebo chybu "
 "načítání ID klienta z služby AMP Client ID"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid "Contains campaign related information for the user"
 msgstr "Obsahuje informace o kampani pro uživatele"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "Country of the visitor"
 msgstr "Země návštěvníka"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid "Depends on the length of the experiment but typically 90 days"
 msgstr "Závisí na délce experimentu, ale obvykle 90 dnů"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "First visit to the website"
 msgstr "První návštěva webové stránky"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "Flag that enables long_pooling"
 msgstr "Flag, který umožňuje long_pooling"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "ID of the marketing campaign of the visit"
 msgstr "ID marketingové kampaně"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "Indication if iframe is forbidden"
 msgstr "Údaj, zda iframe je zakázán"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "Number of pages viewed"
 msgstr "Počet navštívených stránek"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "Number of visits to the website"
 msgstr "Počet návštěv na webu"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "Source of entry to the website"
 msgstr "Zdroj vstupu na web"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid ""
 "Stores the traffic source or campaign that explains how the user reached "
@@ -139,27 +139,27 @@ msgstr ""
 "web. Soubor cookie je vytvořen při spuštění knihovny javascript a je "
 "aktualizován při každém odeslání dat do služby Google Analytics"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "Time of appearance of proactive invitation"
 msgstr "Čas vzniku proaktivní pozvánky"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "Time the callback request was initiated"
 msgstr "Čas, kdy byl spuštěn callback request"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "Time the widget was closed"
 msgstr "Čas, kdy byl widget uzavřen"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid "Used to determine a user's inclusion in an experiment"
 msgstr "Používá se k určení zařazení uživatele do experimentu"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid ""
 "Used to determine a user's inclusion in an experiment and the expiry of "
@@ -168,7 +168,7 @@ msgstr ""
 "Používá se k určení zařazení uživatele do experimentu a ukončení "
 "experimentů, do kterých byl uživatel zařazen"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid ""
 "Used to determine new sessions/visits. The cookie is created when the "
@@ -180,18 +180,18 @@ msgstr ""
 "Soubor cookie je aktualizován při každém odeslání dat do služby Google "
 "Analytics"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid "Used to determine the expiry of experiments a user has been included in"
 msgstr ""
 "Používá se k určení ukončení experimentů, do kterých byl uživatel zařazen"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid "Used to distinguish users"
 msgstr "Slouží k rozlišení uživatelů"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid ""
 "Used to distinguish users and sessions. The cookie is created when the "
@@ -203,17 +203,17 @@ msgstr ""
 "Soubor cookie je aktualizován při každém odeslání dat do služby Google "
 "Analytics"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid "Used to store visitor-level custom variable data"
 msgstr "Slouží k ukládání vlastních proměnných na úrovni návštěvníka"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid "Used to throttle request rate"
 msgstr "Omezuje frekvenci požadavků"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "ga"
 msgid ""
 "Used to throttle request rate. If Google Analytics is deployed via Google "
@@ -223,7 +223,7 @@ msgstr ""
 "prostřednictvím Google Tag Manager, tento soubor cookie bude pojmenován "
 "_dc_gtm_%property-id%"
 
-#: srcThirdPartyInfo/_translate.html:1
+#: src/thirdPartyInfo/_translate.html:1
 msgctxt "jivosite"
 msgid "a/b testing group flag"
 msgstr "flag a/b testovací skupiny"

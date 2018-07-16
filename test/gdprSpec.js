@@ -2,13 +2,13 @@
 
 /* global describe, beforeEach, it, module, inject, expect, chai */
 
-describe('ngStorage', function() {
+describe('gdpr.storage', function() {
     var expect = chai.expect,
         onlyOwnProps = function(obj){
             return JSON.parse(JSON.stringify(obj));
         };
 
-    beforeEach(module('ngStorage'));
+    beforeEach(module('gdpr.storage'));
 
 
     var $window = {
