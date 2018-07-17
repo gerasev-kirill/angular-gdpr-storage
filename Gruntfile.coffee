@@ -93,10 +93,10 @@ module.exports = (grunt) ->
                 browsers: browsers
                 singleRun: true
         ngAnnotate: files:
-            cwd: 'dist'
+            cwd: 'src'
             expand: true
-            src: [ './gdprStorage.js' ]
-            dest: 'dist'
+            src: [ '**/*.js' ]
+            dest: 'src'
         file_append: gdprStorage:
             files: [ {
                 prepend: jsTopWrapper
