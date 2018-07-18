@@ -208,21 +208,22 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
   _last$storage = angular.copy($storage);
   $window.addEventListener('storage', function(event) {
     var $storageKey, value;
-    if (!event || !event.key || event.storageArea !== getStorage(storageType)) {
+    if (!event || !event.key) {
       return;
     }
     $storageKey = getStorageKey(event.key);
-    if (event.key === STORAGE_PREFIX + $storageKey) {
-      value = fromJson(event.newValue);
-      if (angular.isDefined(value)) {
-        $storage[$storageKey] = value;
-      } else {
-        delete $storage[$storageKey];
-      }
-      _last$storage = angular.copy($storage);
-      if (!$rootScope.$$phase) {
-        $rootScope.$apply();
-      }
+    if (event.key !== (STORAGE_PREFIX + $storageKey) || event.storageArea !== getStorage(storageType)) {
+      return;
+    }
+    value = fromJson(event.newValue);
+    if (angular.isDefined(value)) {
+      $storage[$storageKey] = value;
+    } else {
+      delete $storage[$storageKey];
+    }
+    _last$storage = angular.copy($storage);
+    if (!$rootScope.$$phase) {
+      $rootScope.$apply();
     }
   });
   $window.addEventListener('beforeunload', function(event) {

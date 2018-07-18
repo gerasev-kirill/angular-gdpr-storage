@@ -155,18 +155,20 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
 
     # #6: Use `$window.addEventListener` instead of `angular.element` to avoid the jQuery-specific `event.originalEvent`
     $window.addEventListener 'storage', (event) ->
-        if !event or !event.key or event.storageArea != getStorage(storageType)
+        if !event or !event.key
             return
         $storageKey = getStorageKey(event.key)
-        if event.key == STORAGE_PREFIX + $storageKey
-            value = fromJson(event.newValue)
-            if angular.isDefined(value)
-                $storage[$storageKey] = value
-            else
-                delete $storage[$storageKey]
-            _last$storage = angular.copy  ($storage)
-            if !$rootScope.$$phase
-                $rootScope.$apply()
+        if event.key != (STORAGE_PREFIX + $storageKey) or event.storageArea != getStorage(storageType)
+            return
+        #
+        value = fromJson(event.newValue)
+        if angular.isDefined(value)
+            $storage[$storageKey] = value
+        else
+            delete $storage[$storageKey]
+        _last$storage = angular.copy  ($storage)
+        if !$rootScope.$$phase
+            $rootScope.$apply()
         return
 
     $window.addEventListener 'beforeunload',
