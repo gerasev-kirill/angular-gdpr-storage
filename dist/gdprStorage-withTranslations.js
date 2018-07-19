@@ -43,39 +43,53 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
       return void 0;
     }
   };
-  getStorage = function(storageType) {
-    var err, error1, error2, key, supported;
-    if (storageType === 'gdprStorage') {
-      storageType = preferredStorageType;
-    }
-    supported = void 0;
+  getStorage = (function() {
+    var err, error1, error2, error3, key, localStorageSupported, sessionStorageSupported;
     try {
-      supported = $window[storageType];
+      sessionStorageSupported = $window['sessionStorage'];
     } catch (error1) {
       err = error1;
-      supported = false;
+      sessionStorageSupported = false;
     }
-    if (supported && storageType === 'localStorage') {
+    try {
+      localStorageSupported = $window['localStorage'];
+    } catch (error2) {
+      err = error2;
+      localStorageSupported = false;
+    }
+    if (localStorageSupported) {
       key = '__' + Math.round(Math.random() * 1e7);
       try {
-        supported.setItem(key, key);
-        supported.removeItem(key);
-      } catch (error2) {
-        err = error2;
-        supported = false;
+        localStorageSupported.setItem(key, key);
+        localStorageSupported.removeItem(key);
+      } catch (error3) {
+        err = error3;
+        localStorageSupported = false;
       }
     }
-    if (!supported) {
-      $log.warn('This browser does not support Web Storage!');
-      return {
-        setItem: angular.noop,
-        getItem: angular.noop,
-        removeItem: angular.noop,
-        key: angular.noop
-      };
-    }
-    return supported;
-  };
+    return function(storageType) {
+      var storage;
+      if (storageType === 'gdprStorage') {
+        storageType = preferredStorageType;
+      }
+      storage = null;
+      if (storageType === 'localStorage' && localStorageSupported) {
+        storage = localStorageSupported;
+      } else if (storageType === 'sessionStorage' && sessionStorageSupported) {
+        storage = sessionStorageSupported;
+      }
+      if (!storage) {
+        $log.warn('This browser does not support Web Storage!');
+        return {
+          setItem: angular.noop,
+          getItem: angular.noop,
+          removeItem: angular.noop,
+          key: angular.noop
+        };
+      }
+      return storage;
+    };
+  })();
   $storage = {
     $default: function(items) {
       var k, v;

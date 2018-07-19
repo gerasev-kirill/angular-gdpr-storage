@@ -3,8 +3,8 @@
 module.exports = (grunt) ->
     browsers = [
         'Chrome'
-        'PhantomJS'
-        'Firefox'
+        #'PhantomJS'
+        #'Firefox'
     ]
     if process.env.TRAVIS
         browsers = [ 'PhantomJS' ]

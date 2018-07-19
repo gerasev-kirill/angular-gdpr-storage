@@ -3,7 +3,7 @@
 
   module.exports = function(grunt) {
     var browsers, jsBottomWrapper, jsTopWrapper;
-    browsers = ['Chrome', 'PhantomJS', 'Firefox'];
+    browsers = ['Chrome'];
     if (process.env.TRAVIS) {
       browsers = ['PhantomJS'];
     }

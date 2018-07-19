@@ -27,39 +27,49 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
         catch error
             return undefined
 
-    getStorage = (storageType) ->
-        if storageType == 'gdprStorage'
-            storageType = preferredStorageType
+    getStorage = do()->
         # Some installations of IE, for an unknown reason, throw "SCRIPT5: Error: Access is denied"
         # when accessing window.localStorage. This happens before you try to do anything with it. Catch
         # that error and allow execution to continue.
         # fix 'SecurityError: DOM Exception 18' exception in Desktop Safari, Mobile Safari
         # when "Block cookies": "Always block" is turned on
-        supported = undefined
         try
-            supported = $window[storageType]
+            sessionStorageSupported = $window['sessionStorage']
         catch err
-            supported = false
+            sessionStorageSupported = false
+        try
+            localStorageSupported = $window['localStorage']
+        catch err
+            localStorageSupported = false
         # When Safari (OS X or iOS) is in private browsing mode, it appears as though localStorage
         # is available, but trying to call .setItem throws an exception below:
         # "QUOTA_EXCEEDED_ERR: DOM Exception 22: An attempt was made to add something to storage that exceeded the quota."
-        if supported and storageType == 'localStorage'
+        if localStorageSupported
             key = '__' + Math.round(Math.random() * 1e7)
             try
-                supported.setItem key, key
-                supported.removeItem key
+                localStorageSupported.setItem(key, key)
+                localStorageSupported.removeItem(key)
             catch err
-                supported = false
-        if !supported
-            #9: Assign a placeholder object if Web Storage is unavailable to prevent breaking the entire AngularJS app
-            $log.warn('This browser does not support Web Storage!')
-            return {
-                setItem: angular.noop
-                getItem: angular.noop
-                removeItem: angular.noop
-                key: angular.noop
-            }
-        supported
+                localStorageSupported = false
+
+        (storageType) ->
+            if storageType == 'gdprStorage'
+                storageType = preferredStorageType
+            storage = null
+            if storageType == 'localStorage' and localStorageSupported
+                storage = localStorageSupported
+            else if storageType == 'sessionStorage' and sessionStorageSupported
+                storage = sessionStorageSupported
+            if !storage
+                #9: Assign a placeholder object if Web Storage is unavailable to prevent breaking the entire AngularJS app
+                $log.warn('This browser does not support Web Storage!')
+                return {
+                    setItem: angular.noop
+                    getItem: angular.noop
+                    removeItem: angular.noop
+                    key: angular.noop
+                }
+            storage
 
 
     $storage = {
