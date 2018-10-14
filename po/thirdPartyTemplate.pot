@@ -48,137 +48,137 @@ msgstr ""
 msgid "90 days"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Cash of callback backend script response"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "City of the visitor"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Contains a token that can be used to retrieve a Client ID from AMP Client ID service. Other possible values indicate opt-out, inflight request or an error retrieving a Client ID from AMP Client ID service"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Contains campaign related information for the user"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Country of the visitor"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Depends on the length of the experiment but typically 90 days"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "First visit to the website"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Flag that enables long_pooling"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "ID of the marketing campaign of the visit"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Indication if iframe is forbidden"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Number of pages viewed"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Number of visits to the website"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Source of entry to the website"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Stores the traffic source or campaign that explains how the user reached your site. The cookie is created when the javascript library executes and is updated every time data is sent to Google Analytics"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Time of appearance of proactive invitation"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Time the callback request was initiated"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Time the widget was closed"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to determine a user's inclusion in an experiment"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to determine a user's inclusion in an experiment and the expiry of experiments a user has been included in"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to determine new sessions/visits. The cookie is created when the javascript library executes and no existing __utmb cookies exists. The cookie is updated every time data is sent to Google Analytics"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to determine the expiry of experiments a user has been included in"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to distinguish users"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to distinguish users and sessions. The cookie is created when the javascript library executes and no existing __utma cookies exists. The cookie is updated every time data is sent to Google Analytics"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to store visitor-level custom variable data"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to throttle request rate"
 msgstr ""
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to throttle request rate. If Google Analytics is deployed via Google Tag Manager, this cookie will be named _dc_gtm_%property-id%"
 msgstr ""
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "a/b testing group flag"
 msgstr ""

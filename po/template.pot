@@ -5,19 +5,21 @@ msgstr ""
 "Project-Id-Version: \n"
 
 #: src/gdprRequestPermissionArea.html:48
-#: src/gdprRequestPermissionArea.html:67
+#: src/gdprRequestPermissionArea.html:68
+#: src/gdprRequestPermissionArea.html:83
 msgctxt "Accept cookies"
 msgid "Accept"
 msgstr ""
 
 #: src/gdprRequestPermissionArea.html:57
-#: src/gdprRequestPermissionArea.html:68
+#: src/gdprRequestPermissionArea.html:84
 msgctxt "Accept all cookies"
 msgid "Accept all"
 msgstr ""
 
 #: src/gdprRequestPermissionArea.html:52
-#: src/gdprRequestPermissionArea.html:69
+#: src/gdprRequestPermissionArea.html:73
+#: src/gdprRequestPermissionArea.html:85
 msgctxt "Deny cookies"
 msgid "Deny"
 msgstr ""

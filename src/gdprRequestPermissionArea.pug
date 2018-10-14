@@ -38,8 +38,8 @@ table.gdpr-request-permission-area-content
                                         td.gdpr-text {{cookie.type | translate}}
                             
 
-            td.gdpr-request-permission-area-content-btns.hidden-xs.hidden-sm
-                table
+            td.gdpr-request-permission-area-content-btns.hidden-xs.hidden-sm(ng-switch="!!storageSettings.defaultAllowAll")
+                table(ng-switch-when='false')
                     body
                         tr
                             td
@@ -54,11 +54,28 @@ table.gdpr-request-permission-area-content
                                 button.btn.btn-success.btn-xs.btn-block(ng-click="onAcceptAll()")
                                     span.fa.fa-check
                                     span(translate='', translate-context='Accept all cookies') Accept all
+                                    body(ng-switch-when='false')
+                table(ng-switch-when='true')
+                    body
+                        tr
+                            td
+                                button.btn.btn-success.btn-xs.btn-block(ng-click="onAccept()")
+                                    span.fa.fa-check
+                                    span(translate='', translate-context='Accept cookies') Accept
+                        tr
+                            td
+                                button.btn.btn-default.btn-xs.btn-block(ng-click="onCancel()")
+                                    span.fa.fa-times
+                                    span(translate='', translate-context='Deny cookies') Deny
+
+
         tr.gdpr-request-permission-area-content-btns.visible-xs.visible-sm
             td.text-center(colspan='2')
                 .btn-group
-                    button.btn.btn-default.btn-xs(translate='', ng-click="onAccept()", translate-context='Accept cookies') Accept
-                    button.btn.btn-success.btn-xs(ng-click="onAcceptAll()")
+                    button.btn.btn-default.btn-xs(ng-click="onAccept()", ng-class="{'btn-success': storageSettings.defaultAllowAll}")
+                        span.fa.fa-check(ng-show="storageSettings.defaultAllowAll")
+                        span(translate='', translate-context='Accept cookies') Accept
+                    button.btn.btn-success.btn-xs(ng-click="onAcceptAll()", ng-hide="storageSettings.defaultAllowAll")
                         span.fa.fa-check
                         span(translate='', translate-context='Accept all cookies') Accept all
                     button.btn.btn-default.btn-xs(ng-click="onCancel()")

@@ -277,6 +277,7 @@ angular.module('storage.gdpr', []).provider('storageSettings', function() {
   this.$get = function() {
     if (!storageSettings) {
       storageSettings = {
+        defaultAllowAll: false,
         isBannerVisible: false,
         thirdPartyServices: [],
         getPrefix: function() {
@@ -414,12 +415,15 @@ angular.module('storage.gdpr', []).provider('storageSettings', function() {
 angular.module('storage.gdpr').directive('gdprRequestPermissionBanner', function() {
   return {
     restrict: 'E',
-    scope: {},
+    scope: {
+      defaultAllowAll: '@?'
+    },
     controller: ["$scope", "$element", "$gdprStorage", "storageSettings", function($scope, $element, $gdprStorage, storageSettings) {
       $scope.storageSettings = storageSettings;
       if (!$gdprStorage.gdprPermission.app) {
         storageSettings.setBannerVisibility(true);
       }
+      storageSettings.defaultAllowAll = $scope.defaultAllowAll === 'true';
       return $scope.$watch('storageSettings.isBannerVisible', function(isVisible) {
         if (isVisible) {
           $element.addClass('visible');
@@ -455,7 +459,7 @@ angular.module('storage.gdpr').directive('gdprRequestPermissionBanner', function
         });
       }
       $scope.$watchCollection('storageSettings.thirdPartyServices', function(thirdPartyServices, oldValue) {
-        var i, len, literals, ref1, s;
+        var i, j, len, len1, literals, ref1, ref2, s;
         $scope.SERVICES = [
           {
             type: 'app',
@@ -473,12 +477,22 @@ angular.module('storage.gdpr').directive('gdprRequestPermissionBanner', function
             $scope.SERVICES.push(s);
           }
         }
+        if (storageSettings.defaultAllowAll) {
+          ref2 = $scope.SERVICES;
+          for (j = 0, len1 = ref2.length; j < len1; j++) {
+            s = ref2[j];
+            $scope.options.permission[s.type] = true;
+          }
+        }
       });
       $rootScope.$on('storage.gdpr.update', function() {
         $scope.options.permission = angular.copy($gdprStorage.gdprPermission);
       });
       $scope.onCancel = function() {
-        $scope.options.permission.app = false;
+        var k;
+        for (k in $scope.options.permission) {
+          $scope.options.permission[k] = false;
+        }
         $gdprStorage.$setPermission($scope.options.permission);
         storageSettings.setBannerVisibility(false);
       };
@@ -494,13 +508,13 @@ angular.module('storage.gdpr').directive('gdprRequestPermissionBanner', function
           service = ref1[i];
           $scope.options.permission[service.type] = true;
         }
-        $timeout($scope.onAccept, 700);
+        $timeout($scope.onAccept, 900);
       };
       $scope.toggleDetails = function() {
         return $scope.options.isDetailsVisible = !$scope.options.isDetailsVisible;
       };
     }],
-    template: ('/src/gdprRequestPermissionArea.html', '\n<table class="gdpr-request-permission-area-content">\n  <tbody>\n    <tr>\n      <td>\n        <h5><b translate="">This website uses cookies and local storage</b></h5>\n        <p class="gdpr-text"><span translate="">We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. You should consent to our cookies if you continue to use our website.</span><span> </span><a ng-click="toggleDetails()" ng-switch="options.isDetailsVisible"><span translate="" ng-switch-when="true">Hide details</span><span translate="" ng-switch-when="false">Show details about cookies and local storage</span></a></p>\n        <div class="gdpr-request-permission-area-content-checkboxes">\n          <div class="checkbox-inline" ng-repeat="service in SERVICES">\n            <label>\n              <input type="checkbox" ng-model="options.permission[service.type]"/><span> </span><span>{{service.name | translate}}</span>\n            </label>\n          </div>\n        </div>\n        <div class="gdpr-request-permission-area-content-details" ng-if="options.isDetailsVisible">\n          <uib-tabset class="uib-tabset-sm" active="options.activeTab">\n            <uib-tab ng-repeat="service in SERVICES" index="$index" heading="{{service.name | translate}}">\n              <p class="gdpr-text" ng-if="service.description">{{service.description | translate}}</p>\n              <table class="table table-striped table-bordered table-condensed">\n                <thead>\n                  <tr>\n                    <th class="gdpr-text" translate="">Name</th>\n                    <th class="gdpr-text" translate="">Provider</th>\n                    <th class="gdpr-text" translate="">Purpose</th>\n                    <th class="gdpr-text" translate="">Expiry</th>\n                    <th class="gdpr-text" translate="">Type</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr ng-repeat="cookie in service.cookies">\n                    <td class="gdpr-text">{{cookie.key}}</td>\n                    <td class="gdpr-text">{{cookie.provider | translate}}</td>\n                    <td class="gdpr-text">{{cookie.purpose | translate}}</td>\n                    <td class="gdpr-text">{{cookie.expiry | translate}}</td>\n                    <td class="gdpr-text">{{cookie.type | translate}}</td>\n                  </tr>\n                </tbody>\n              </table>\n            </uib-tab>\n          </uib-tabset>\n        </div>\n      </td>\n      <td class="gdpr-request-permission-area-content-btns hidden-xs hidden-sm">\n        <table>\n          <body>\n            <tr>\n              <td>\n                <button class="btn btn-default btn-xs btn-block" translate="" ng-click="onAccept()" translate-context="Accept cookies">Accept</button>\n              </td>\n              <td class="btn-separator"></td>\n              <td>\n                <button class="btn btn-default btn-xs btn-block" ng-click="onCancel()"><span class="fa fa-times"></span><span translate="" translate-context="Deny cookies">Deny</span></button>\n              </td>\n            </tr>\n            <tr>\n              <td colspan="3">\n                <button class="btn btn-success btn-xs btn-block" ng-click="onAcceptAll()"><span class="fa fa-check"></span><span translate="" translate-context="Accept all cookies">Accept all</span></button>\n              </td>\n            </tr>\n          </body>\n        </table>\n      </td>\n    </tr>\n    <tr class="gdpr-request-permission-area-content-btns visible-xs visible-sm">\n      <td class="text-center" colspan="2">\n        <div class="btn-group">\n          <button class="btn btn-default btn-xs" translate="" ng-click="onAccept()" translate-context="Accept cookies">Accept</button>\n          <button class="btn btn-success btn-xs" ng-click="onAcceptAll()"><span class="fa fa-check"></span><span translate="" translate-context="Accept all cookies">Accept all</span></button>\n          <button class="btn btn-default btn-xs" ng-click="onCancel()"><span class="fa fa-times"></span><span translate="" translate-context="Deny cookies">Deny</span></button>\n        </div>\n      </td>\n    </tr>\n  </tbody>\n</table>' + '')
+    template: ('/src/gdprRequestPermissionArea.html', '\n<table class="gdpr-request-permission-area-content">\n  <tbody>\n    <tr>\n      <td>\n        <h5><b translate="">This website uses cookies and local storage</b></h5>\n        <p class="gdpr-text"><span translate="">We use cookies to personalise content and ads, to provide social media features and to analyse our traffic. You should consent to our cookies if you continue to use our website.</span><span> </span><a ng-click="toggleDetails()" ng-switch="options.isDetailsVisible"><span translate="" ng-switch-when="true">Hide details</span><span translate="" ng-switch-when="false">Show details about cookies and local storage</span></a></p>\n        <div class="gdpr-request-permission-area-content-checkboxes">\n          <div class="checkbox-inline" ng-repeat="service in SERVICES">\n            <label>\n              <input type="checkbox" ng-model="options.permission[service.type]"/><span> </span><span>{{service.name | translate}}</span>\n            </label>\n          </div>\n        </div>\n        <div class="gdpr-request-permission-area-content-details" ng-if="options.isDetailsVisible">\n          <uib-tabset class="uib-tabset-sm" active="options.activeTab">\n            <uib-tab ng-repeat="service in SERVICES" index="$index" heading="{{service.name | translate}}">\n              <p class="gdpr-text" ng-if="service.description">{{service.description | translate}}</p>\n              <table class="table table-striped table-bordered table-condensed">\n                <thead>\n                  <tr>\n                    <th class="gdpr-text" translate="">Name</th>\n                    <th class="gdpr-text" translate="">Provider</th>\n                    <th class="gdpr-text" translate="">Purpose</th>\n                    <th class="gdpr-text" translate="">Expiry</th>\n                    <th class="gdpr-text" translate="">Type</th>\n                  </tr>\n                </thead>\n                <tbody>\n                  <tr ng-repeat="cookie in service.cookies">\n                    <td class="gdpr-text">{{cookie.key}}</td>\n                    <td class="gdpr-text">{{cookie.provider | translate}}</td>\n                    <td class="gdpr-text">{{cookie.purpose | translate}}</td>\n                    <td class="gdpr-text">{{cookie.expiry | translate}}</td>\n                    <td class="gdpr-text">{{cookie.type | translate}}</td>\n                  </tr>\n                </tbody>\n              </table>\n            </uib-tab>\n          </uib-tabset>\n        </div>\n      </td>\n      <td class="gdpr-request-permission-area-content-btns hidden-xs hidden-sm" ng-switch="!!storageSettings.defaultAllowAll">\n        <table ng-switch-when="false">\n          <body>\n            <tr>\n              <td>\n                <button class="btn btn-default btn-xs btn-block" translate="" ng-click="onAccept()" translate-context="Accept cookies">Accept</button>\n              </td>\n              <td class="btn-separator"></td>\n              <td>\n                <button class="btn btn-default btn-xs btn-block" ng-click="onCancel()"><span class="fa fa-times"></span><span translate="" translate-context="Deny cookies">Deny</span></button>\n              </td>\n            </tr>\n            <tr>\n              <td colspan="3">\n                <button class="btn btn-success btn-xs btn-block" ng-click="onAcceptAll()"><span class="fa fa-check"></span><span translate="" translate-context="Accept all cookies">Accept all</span>\n                  <body ng-switch-when="false"></body>\n                </button>\n              </td>\n            </tr>\n          </body>\n        </table>\n        <table ng-switch-when="true">\n          <body>\n            <tr>\n              <td>\n                <button class="btn btn-success btn-xs btn-block" ng-click="onAccept()"><span class="fa fa-check"></span><span translate="" translate-context="Accept cookies">Accept</span></button>\n              </td>\n            </tr>\n            <tr>\n              <td>\n                <button class="btn btn-default btn-xs btn-block" ng-click="onCancel()"><span class="fa fa-times"></span><span translate="" translate-context="Deny cookies">Deny</span></button>\n              </td>\n            </tr>\n          </body>\n        </table>\n      </td>\n    </tr>\n    <tr class="gdpr-request-permission-area-content-btns visible-xs visible-sm">\n      <td class="text-center" colspan="2">\n        <div class="btn-group">\n          <button class="btn btn-default btn-xs" ng-click="onAccept()" ng-class="{\'btn-success\': storageSettings.defaultAllowAll}"><span class="fa fa-check" ng-show="storageSettings.defaultAllowAll"></span><span translate="" translate-context="Accept cookies">Accept</span></button>\n          <button class="btn btn-success btn-xs" ng-click="onAcceptAll()" ng-hide="storageSettings.defaultAllowAll"><span class="fa fa-check"></span><span translate="" translate-context="Accept all cookies">Accept all</span></button>\n          <button class="btn btn-default btn-xs" ng-click="onCancel()"><span class="fa fa-times"></span><span translate="" translate-context="Deny cookies">Deny</span></button>\n        </div>\n      </td>\n    </tr>\n  </tbody>\n</table>' + '')
   };
 });
 

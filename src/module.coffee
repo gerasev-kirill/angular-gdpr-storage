@@ -221,6 +221,7 @@ angular.module('storage.gdpr', [])
     @$get = ()->
         if !storageSettings
             storageSettings = {
+                defaultAllowAll: false
                 isBannerVisible: false
                 thirdPartyServices: []
                 getPrefix: ()->

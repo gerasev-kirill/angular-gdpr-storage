@@ -5,11 +5,14 @@ angular.module('storage.gdpr')
 
 .directive 'gdprRequestPermissionBanner', () ->
     restrict: 'E'
-    scope:{}
+    scope:{
+        defaultAllowAll: '@?'
+    }
     controller: ($scope, $element, $gdprStorage, storageSettings) ->
         $scope.storageSettings = storageSettings
         if !$gdprStorage.gdprPermission.app
             storageSettings.setBannerVisibility(true)
+        storageSettings.defaultAllowAll = $scope.defaultAllowAll == 'true'
 
         $scope.$watch 'storageSettings.isBannerVisible', (isVisible)->
             if isVisible
@@ -61,6 +64,9 @@ angular.module('storage.gdpr')
                     $scope.SERVICES.push(literals[s])
                 else if angular.isObject(s)
                     $scope.SERVICES.push(s)
+            if storageSettings.defaultAllowAll
+                for s in $scope.SERVICES
+                    $scope.options.permission[s.type] = true
             return
 
         $rootScope.$on 'storage.gdpr.update', ()->
@@ -68,7 +74,8 @@ angular.module('storage.gdpr')
             return
 
         $scope.onCancel = () ->
-            $scope.options.permission.app = false
+            for k of $scope.options.permission
+                $scope.options.permission[k] = false
             $gdprStorage.$setPermission($scope.options.permission)
             storageSettings.setBannerVisibility(false)
             return
@@ -82,7 +89,7 @@ angular.module('storage.gdpr')
         $scope.onAcceptAll = () ->
             for service in $scope.SERVICES or []
                 $scope.options.permission[service.type] = true
-            $timeout($scope.onAccept, 700)
+            $timeout($scope.onAccept, 900)
             return
 
         $scope.toggleDetails = () ->

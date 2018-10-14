@@ -58,17 +58,14 @@ msgid "90 days"
 msgstr "90 dní"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Cash of callback backend script response"
 msgstr "Cash callback odpovědi backend skriptu"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "City of the visitor"
 msgstr "Město návštěvníka"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid ""
 "Contains a token that can be used to retrieve a Client ID from AMP Client ID "
 "service. Other possible values indicate opt-out, inflight request or an "
@@ -79,57 +76,46 @@ msgstr ""
 "načítání ID klienta z služby AMP Client ID"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Contains campaign related information for the user"
 msgstr "Obsahuje informace o kampani pro uživatele"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Country of the visitor"
 msgstr "Země návštěvníka"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Depends on the length of the experiment but typically 90 days"
 msgstr "Závisí na délce experimentu, ale obvykle 90 dnů"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "First visit to the website"
 msgstr "První návštěva webové stránky"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Flag that enables long_pooling"
 msgstr "Flag, který umožňuje long_pooling"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "ID of the marketing campaign of the visit"
 msgstr "ID marketingové kampaně"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Indication if iframe is forbidden"
 msgstr "Údaj, zda iframe je zakázán"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Number of pages viewed"
 msgstr "Počet navštívených stránek"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Number of visits to the website"
 msgstr "Počet návštěv na webu"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Source of entry to the website"
 msgstr "Zdroj vstupu na web"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid ""
 "Stores the traffic source or campaign that explains how the user reached "
 "your site. The cookie is created when the javascript library executes and is "
@@ -140,27 +126,22 @@ msgstr ""
 "aktualizován při každém odeslání dat do služby Google Analytics"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Time of appearance of proactive invitation"
 msgstr "Čas vzniku proaktivní pozvánky"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Time the callback request was initiated"
 msgstr "Čas, kdy byl spuštěn callback request"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "Time the widget was closed"
 msgstr "Čas, kdy byl widget uzavřen"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to determine a user's inclusion in an experiment"
 msgstr "Používá se k určení zařazení uživatele do experimentu"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid ""
 "Used to determine a user's inclusion in an experiment and the expiry of "
 "experiments a user has been included in"
@@ -169,7 +150,6 @@ msgstr ""
 "experimentů, do kterých byl uživatel zařazen"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid ""
 "Used to determine new sessions/visits. The cookie is created when the "
 "javascript library executes and no existing __utmb cookies exists. The "
@@ -181,18 +161,15 @@ msgstr ""
 "Analytics"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to determine the expiry of experiments a user has been included in"
 msgstr ""
 "Používá se k určení ukončení experimentů, do kterých byl uživatel zařazen"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to distinguish users"
 msgstr "Slouží k rozlišení uživatelů"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid ""
 "Used to distinguish users and sessions. The cookie is created when the "
 "javascript library executes and no existing __utma cookies exists. The "
@@ -204,17 +181,14 @@ msgstr ""
 "Analytics"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to store visitor-level custom variable data"
 msgstr "Slouží k ukládání vlastních proměnných na úrovni návštěvníka"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid "Used to throttle request rate"
 msgstr "Omezuje frekvenci požadavků"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "ga"
 msgid ""
 "Used to throttle request rate. If Google Analytics is deployed via Google "
 "Tag Manager, this cookie will be named _dc_gtm_%property-id%"
@@ -224,6 +198,5 @@ msgstr ""
 "_dc_gtm_%property-id%"
 
 #: src/thirdPartyInfo/_translate.html:1
-msgctxt "jivosite"
 msgid "a/b testing group flag"
 msgstr "flag a/b testovací skupiny"
