@@ -5,7 +5,15 @@ msgstr ""
 "Project-Id-Version: \n"
 
 #: src/thirdPartyInfo/_translate.html:1
+msgid "1 day"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
 msgid "1 minute"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "1 year"
 msgstr ""
 
 #: src/thirdPartyInfo/_translate.html:1
@@ -21,6 +29,10 @@ msgid "18 months"
 msgstr ""
 
 #: src/thirdPartyInfo/_translate.html:1
+msgid "2 days"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
 msgid "2 years"
 msgstr ""
 
@@ -33,7 +45,15 @@ msgid "24 hours"
 msgstr ""
 
 #: src/thirdPartyInfo/_translate.html:1
+msgid "30 days"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
 msgid "30 mins from set/update"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "30 minutes"
 msgstr ""
 
 #: src/thirdPartyInfo/_translate.html:1
@@ -46,6 +66,11 @@ msgstr ""
 
 #: src/thirdPartyInfo/_translate.html:1
 msgid "90 days"
+msgstr ""
+
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Allows Session Replay to function correctly"
 msgstr ""
 
 #. jivosite
@@ -73,6 +98,11 @@ msgstr ""
 msgid "Country of the visitor"
 msgstr ""
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Date of the user's first site session"
+msgstr ""
+
 #. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Depends on the length of the experiment but typically 90 days"
@@ -93,9 +123,19 @@ msgstr ""
 msgid "ID of the marketing campaign of the visit"
 msgstr ""
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Indicates that debug mode is active"
+msgstr ""
+
 #. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Indication if iframe is forbidden"
+msgstr ""
+
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Limits the number of requests"
 msgstr ""
 
 #. jivosite
@@ -108,9 +148,19 @@ msgstr ""
 msgid "Number of visits to the website"
 msgstr ""
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Session ID"
+msgstr ""
+
 #. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Source of entry to the website"
+msgstr ""
+
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Stores auxiliary information for syncing site user IDs between different Yandex domain"
 msgstr ""
 
 #. ga
@@ -133,6 +183,20 @@ msgstr ""
 msgid "Time the widget was closed"
 msgstr ""
 
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Until the session ends"
+msgstr ""
+
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Used for Target Call"
+msgstr ""
+
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Used for identifying site users"
+msgstr ""
+
 #. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Used to determine a user's inclusion in an experiment"
@@ -141,6 +205,11 @@ msgstr ""
 #. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Used to determine a user's inclusion in an experiment and the expiry of experiments a user has been included in"
+msgstr ""
+
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Used to determine if a visitor has ad blockers"
 msgstr ""
 
 #. ga

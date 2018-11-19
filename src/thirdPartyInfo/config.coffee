@@ -170,6 +170,87 @@ angular.module('storage.gdpr')
             type: 'HTTP cookie'
         }
     ]
+    yandexMetrica = [
+        {
+            key: '_ym_isad'
+            provider: 'yandex.com'
+            purpose: 'Used to determine if a visitor has ad blockers'
+            expiry: '2 days'
+            type: 'HTTP cookie'
+        },{
+            key: '_ym_uid'
+            provider: 'yandex.com'
+            purpose: 'Used for identifying site users'
+            expiry: '1 year'
+            type: 'HTTP cookie'
+        },{
+            key: '_ym_d'
+            provider: 'yandex.com'
+            purpose: "Date of the user's first site session"
+            expiry: '1 year'
+            type: 'HTTP cookie'
+        },{
+            key: 'yabs-sid'
+            provider: 'yandex.com'
+            purpose: 'Session ID'
+            expiry: 'Until the session ends'
+            type: 'HTTP cookie'
+        },{
+            key: '_ym_debug'
+            provider: 'yandex.com'
+            purpose: 'Indicates that debug mode is active'
+            expiry: 'Until the session ends'
+            type: 'HTTP cookie'
+        },{
+            key: '_ym_mp2_substs'
+            provider: 'yandex.com'
+            purpose: 'Used for Target Call'
+            expiry: 'Until the session ends'
+            type: 'HTTP cookie'
+        },{
+            key: 'i'
+            provider: 'yandex.com'
+            purpose: 'Used for identifying site users'
+            expiry: '1 year'
+            type: 'HTTP cookie'
+        },{
+            key: 'yandexuid'
+            provider: 'yandex.com'
+            purpose: 'Used for identifying site users'
+            expiry: '1 year'
+            type: 'HTTP cookie'
+        },{
+            key: 'usst'
+            provider: 'yandex.com'
+            purpose: 'Stores auxiliary information for syncing site user IDs between different Yandex domains'
+            expiry: '1 year'
+            type: 'HTTP cookie'
+        },{
+            key: '_ym_visorc_*'
+            provider: 'yandex.com'
+            purpose: 'Allows Session Replay to function correctly'
+            expiry: '30 minutes'
+            type: 'HTTP cookie'
+        },{
+            key: '_ym_hostIndex'
+            provider: 'yandex.com'
+            purpose: 'Limits the number of requests'
+            expiry: '1 day'
+            type: 'HTTP cookie'
+        },{
+            key: '_ym_mp2_track'
+            provider: 'yandex.com'
+            purpose: 'Used for Target Call'
+            expiry: '30 days'
+            type: 'HTTP cookie'
+        },{
+            key: 'zz'
+            provider: 'yandex.com'
+            purpose: 'Used for identifying site users'
+            expiry: '90 days'
+            type: 'HTTP cookie'
+        }
+    ]
 
     storageSettingsProvider.registerThirdPartyServiceLiteral('googleAnalytics', {
         type: 'googleAnalytics'
@@ -185,5 +266,10 @@ angular.module('storage.gdpr')
         type: 'jivosite'
         name: 'Jivochat'
         cookies: jivosite
+    })
+    storageSettingsProvider.registerThirdPartyServiceLiteral('yandexMetrica', {
+        type: 'yandexMetrica'
+        name: 'Yandex Metrica'
+        cookies: yandexMetrica
     })
     return

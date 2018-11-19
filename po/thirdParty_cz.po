@@ -14,8 +14,16 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/thirdPartyInfo/_translate.html:1
+msgid "1 day"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
 msgid "1 minute"
 msgstr "1 minuta"
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "1 year"
+msgstr ""
 
 #: src/thirdPartyInfo/_translate.html:1
 msgid "10 minutes"
@@ -30,6 +38,10 @@ msgid "18 months"
 msgstr "8 měsíců"
 
 #: src/thirdPartyInfo/_translate.html:1
+msgid "2 days"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
 msgid "2 years"
 msgstr "2 roky"
 
@@ -42,8 +54,16 @@ msgid "24 hours"
 msgstr "24 hodiny"
 
 #: src/thirdPartyInfo/_translate.html:1
+msgid "30 days"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
 msgid "30 mins from set/update"
 msgstr "30 minut from set/update"
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "30 minutes"
+msgstr ""
 
 #: src/thirdPartyInfo/_translate.html:1
 msgid "30 seconds to 1 year"
@@ -57,14 +77,22 @@ msgstr "6 měsíců od nastavení / aktualizace"
 msgid "90 days"
 msgstr "90 dní"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Allows Session Replay to function correctly"
+msgstr ""
+
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Cash of callback backend script response"
 msgstr "Cash callback odpovědi backend skriptu"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "City of the visitor"
 msgstr "Město návštěvníka"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Contains a token that can be used to retrieve a Client ID from AMP Client ID "
@@ -75,46 +103,84 @@ msgstr ""
 "ID. Jiné možné hodnoty označují opt-out, inflight request nebo chybu "
 "načítání ID klienta z služby AMP Client ID"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Contains campaign related information for the user"
 msgstr "Obsahuje informace o kampani pro uživatele"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Country of the visitor"
 msgstr "Země návštěvníka"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Date of the user's first site session"
+msgstr ""
+
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Depends on the length of the experiment but typically 90 days"
 msgstr "Závisí na délce experimentu, ale obvykle 90 dnů"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "First visit to the website"
 msgstr "První návštěva webové stránky"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Flag that enables long_pooling"
 msgstr "Flag, který umožňuje long_pooling"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "ID of the marketing campaign of the visit"
 msgstr "ID marketingové kampaně"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Indicates that debug mode is active"
+msgstr ""
+
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Indication if iframe is forbidden"
 msgstr "Údaj, zda iframe je zakázán"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Limits the number of requests"
+msgstr ""
+
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Number of pages viewed"
 msgstr "Počet navštívených stránek"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Number of visits to the website"
 msgstr "Počet návštěv na webu"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Session ID"
+msgstr ""
+
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Source of entry to the website"
 msgstr "Zdroj vstupu na web"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid ""
+"Stores auxiliary information for syncing site user IDs between different "
+"Yandex domain"
+msgstr ""
+
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Stores the traffic source or campaign that explains how the user reached "
@@ -125,22 +191,41 @@ msgstr ""
 "web. Soubor cookie je vytvořen při spuštění knihovny javascript a je "
 "aktualizován při každém odeslání dat do služby Google Analytics"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Time of appearance of proactive invitation"
 msgstr "Čas vzniku proaktivní pozvánky"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Time the callback request was initiated"
 msgstr "Čas, kdy byl spuštěn callback request"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Time the widget was closed"
 msgstr "Čas, kdy byl widget uzavřen"
 
 #: src/thirdPartyInfo/_translate.html:1
+msgid "Until the session ends"
+msgstr ""
+
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Used for Target Call"
+msgstr ""
+
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Used for identifying site users"
+msgstr ""
+
+#. ga
+#: src/thirdPartyInfo/_translate.html:1
 msgid "Used to determine a user's inclusion in an experiment"
 msgstr "Používá se k určení zařazení uživatele do experimentu"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Used to determine a user's inclusion in an experiment and the expiry of "
@@ -149,6 +234,12 @@ msgstr ""
 "Používá se k určení zařazení uživatele do experimentu a ukončení "
 "experimentů, do kterých byl uživatel zařazen"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Used to determine if a visitor has ad blockers"
+msgstr ""
+
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Used to determine new sessions/visits. The cookie is created when the "
@@ -160,15 +251,18 @@ msgstr ""
 "Soubor cookie je aktualizován při každém odeslání dat do služby Google "
 "Analytics"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Used to determine the expiry of experiments a user has been included in"
 msgstr ""
 "Používá se k určení ukončení experimentů, do kterých byl uživatel zařazen"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Used to distinguish users"
 msgstr "Slouží k rozlišení uživatelů"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Used to distinguish users and sessions. The cookie is created when the "
@@ -180,14 +274,17 @@ msgstr ""
 "Soubor cookie je aktualizován při každém odeslání dat do služby Google "
 "Analytics"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Used to store visitor-level custom variable data"
 msgstr "Slouží k ukládání vlastních proměnných na úrovni návštěvníka"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Used to throttle request rate"
 msgstr "Omezuje frekvenci požadavků"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Used to throttle request rate. If Google Analytics is deployed via Google "
@@ -197,6 +294,7 @@ msgstr ""
 "prostřednictvím Google Tag Manager, tento soubor cookie bude pojmenován "
 "_dc_gtm_%property-id%"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "a/b testing group flag"
 msgstr "flag a/b testovací skupiny"

@@ -14,8 +14,16 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #: src/thirdPartyInfo/_translate.html:1
+msgid "1 day"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
 msgid "1 minute"
 msgstr "1 минута"
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "1 year"
+msgstr ""
 
 #: src/thirdPartyInfo/_translate.html:1
 msgid "10 minutes"
@@ -30,6 +38,10 @@ msgid "18 months"
 msgstr "18 месяцев"
 
 #: src/thirdPartyInfo/_translate.html:1
+msgid "2 days"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
 msgid "2 years"
 msgstr "2 года"
 
@@ -42,8 +54,16 @@ msgid "24 hours"
 msgstr "24 часа"
 
 #: src/thirdPartyInfo/_translate.html:1
+msgid "30 days"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
 msgid "30 mins from set/update"
 msgstr "30 минут с момента установки или обновления"
+
+#: src/thirdPartyInfo/_translate.html:1
+msgid "30 minutes"
+msgstr ""
 
 #: src/thirdPartyInfo/_translate.html:1
 msgid "30 seconds to 1 year"
@@ -57,14 +77,22 @@ msgstr "6 месяцев с момента установки или обнов�
 msgid "90 days"
 msgstr "90 дней"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Allows Session Replay to function correctly"
+msgstr ""
+
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Cash of callback backend script response"
 msgstr "Кеш ответа callback-скрипта"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "City of the visitor"
 msgstr "Город посетителя"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Contains a token that can be used to retrieve a Client ID from AMP Client ID "
@@ -75,46 +103,84 @@ msgstr ""
 "Другие возможные значения: отключение функции, активный запрос или ошибка "
 "получения Client ID от сервиса AMP"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Contains campaign related information for the user"
 msgstr "Содержит информацию о кампании для пользователя"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Country of the visitor"
 msgstr "Страна посетителя"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Date of the user's first site session"
+msgstr ""
+
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Depends on the length of the experiment but typically 90 days"
 msgstr "Зависит от длительности эксперимента (обычно составляет 90 дней)"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "First visit to the website"
 msgstr "Первый визит на сайт"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Flag that enables long_pooling"
 msgstr "Флажок, который включает long_pooling"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "ID of the marketing campaign of the visit"
 msgstr "ID маркетинговой кампании посещения"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Indicates that debug mode is active"
+msgstr ""
+
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Indication if iframe is forbidden"
 msgstr "Индикатор запрета iframe"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Limits the number of requests"
+msgstr ""
+
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Number of pages viewed"
 msgstr "Количество просмотренных страниц"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Number of visits to the website"
 msgstr "Количество посещений сайта"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Session ID"
+msgstr ""
+
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Source of entry to the website"
 msgstr "Источник входа на сайт"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid ""
+"Stores auxiliary information for syncing site user IDs between different "
+"Yandex domain"
+msgstr ""
+
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Stores the traffic source or campaign that explains how the user reached "
@@ -125,22 +191,41 @@ msgstr ""
 "откуда пользователь пришел на ваш сайт. Создается при выполнении библиотеки "
 "и обновляется при каждой отправке данных в Google Analytics"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Time of appearance of proactive invitation"
 msgstr "Время появления активного приглашения"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Time the callback request was initiated"
 msgstr "Время инициирования callback запроса"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Time the widget was closed"
 msgstr "Время закрытия виджета"
 
 #: src/thirdPartyInfo/_translate.html:1
+msgid "Until the session ends"
+msgstr ""
+
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Used for Target Call"
+msgstr ""
+
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Used for identifying site users"
+msgstr ""
+
+#. ga
+#: src/thirdPartyInfo/_translate.html:1
 msgid "Used to determine a user's inclusion in an experiment"
 msgstr "Определяет, принимал ли пользователь участие в эксперименте"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Used to determine a user's inclusion in an experiment and the expiry of "
@@ -149,6 +234,12 @@ msgstr ""
 "Определяет, когда истекает срок эксперимента и принимал ли пользователь в "
 "нем участие"
 
+#. yandex metrica
+#: src/thirdPartyInfo/_translate.html:1
+msgid "Used to determine if a visitor has ad blockers"
+msgstr ""
+
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Used to determine new sessions/visits. The cookie is created when the "
@@ -159,16 +250,19 @@ msgstr ""
 "выполнении библиотеки JavaScript, если нет существующих файлов cookie "
 "__utmb. Обновляется при каждой отправке данных в Google Analytics"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Used to determine the expiry of experiments a user has been included in"
 msgstr ""
 "Определяет, когда истекает срок действия эксперимента, в котором участвовал "
 "пользователь"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Used to distinguish users"
 msgstr "Позволяет различать пользователей"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Used to distinguish users and sessions. The cookie is created when the "
@@ -179,14 +273,17 @@ msgstr ""
 "библиотеки JavaScript, если нет существующих файлов cookie __utma. "
 "Обновляется при каждой отправке данных в Google Analytics"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Used to store visitor-level custom variable data"
 msgstr "Сохраняет данные о пользовательской переменной уровня посетителя"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid "Used to throttle request rate"
 msgstr "Ограничивает частоту запросов"
 
+#. ga
 #: src/thirdPartyInfo/_translate.html:1
 msgid ""
 "Used to throttle request rate. If Google Analytics is deployed via Google "
@@ -196,6 +293,7 @@ msgstr ""
 "помощью Диспетчера тегов Google, файлу будет присвоено название _dc_gtm_"
 "%property-id%"
 
+#. jivosite
 #: src/thirdPartyInfo/_translate.html:1
 msgid "a/b testing group flag"
 msgstr "флаг группы тестирования a/b"
