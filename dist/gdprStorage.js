@@ -137,12 +137,12 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
         }
       }
     },
-    $apply: function() {
+    $apply: function(force) {
       var k, temp$storage, v, webStorage;
       _debounce = null;
       temp$storage = void 0;
       webStorage = getStorage(storageType);
-      if (!angular.equals($storage, _last$storage)) {
+      if (!angular.equals($storage, _last$storage) || force) {
         temp$storage = angular.copy(_last$storage);
         for (k in $storage) {
           v = $storage[k];

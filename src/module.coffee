@@ -100,11 +100,11 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
                     else
                         delete $storage[$storageKey]
             return
-        $apply: ()->
+        $apply: (force)->
             _debounce = null
             temp$storage = undefined
             webStorage = getStorage(storageType)
-            if !angular.equals($storage, _last$storage)
+            if !angular.equals($storage, _last$storage) or force
                 temp$storage = angular.copy  (_last$storage)
                 for k,v of $storage when angular.isDefined(v) and k[0] != '$'
                     if storageType == 'gdprStorage' and !allowedKeysForGdpr[k]
