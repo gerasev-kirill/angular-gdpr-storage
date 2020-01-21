@@ -207,6 +207,19 @@ msgid "Time the widget was closed"
 msgstr "Время закрытия виджета"
 
 #: src/thirdPartyInfo/_translate.html:1
+msgctxt "facebook pixel"
+msgid ""
+"Unfortunately, facebook.com does not provide comprehensive information about "
+"the created and tracked cookies and keys in localStorage. For general "
+"information, you can follow this <a href=\"https://www.facebook.com/policies/"
+"cookies/\" target=\"_blank\">link</a>"
+msgstr ""
+"К сожалению, facebook.com не предоставляет исчерпывающей информации про "
+"создаваемые и отслеживаемые cookies и ключи в localStorage. Для получения "
+"общей информации вы можете пройти по этой <a href=\"https://www.facebook.com/"
+"policies/cookies/\" target=\"_blank\">ссылке</a>"
+
+#: src/thirdPartyInfo/_translate.html:1
 msgid "Until the session ends"
 msgstr ""
 

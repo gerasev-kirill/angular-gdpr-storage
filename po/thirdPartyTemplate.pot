@@ -184,6 +184,11 @@ msgid "Time the widget was closed"
 msgstr ""
 
 #: src/thirdPartyInfo/_translate.html:1
+msgctxt "facebook pixel"
+msgid "Unfortunately, facebook.com does not provide comprehensive information about the created and tracked cookies and keys in localStorage. For general information, you can follow this <a href=\"https://www.facebook.com/policies/cookies/\" target=\"_blank\">link</a>"
+msgstr ""
+
+#: src/thirdPartyInfo/_translate.html:1
 msgid "Until the session ends"
 msgstr ""
 

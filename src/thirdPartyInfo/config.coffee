@@ -272,4 +272,9 @@ angular.module('storage.gdpr')
         name: 'Yandex Metrica'
         cookies: yandexMetrica
     })
+    storageSettingsProvider.registerThirdPartyServiceLiteral('facebookPixel', {
+        type: 'facebookPixel'
+        name: 'Facebook Pixel'
+        description: """Unfortunately, facebook.com does not provide comprehensive information about the created and tracked cookies and keys in localStorage. For general information, you can follow this <a href='https://www.facebook.com/policies/cookies/' target='_blank'>link</a>."""
+    })
     return

@@ -20,8 +20,8 @@ table.gdpr-request-permission-area-content
                 .gdpr-request-permission-area-content-details(ng-if="options.isDetailsVisible")
                     uib-tabset.uib-tabset-sm(active="options.activeTab")
                         uib-tab(ng-repeat="service in SERVICES", index="$index", heading="{{service.name | translate}}")
-                            p.gdpr-text(ng-if="service.description") {{service.description | translate}}
-                            table.table.table-striped.table-bordered.table-condensed
+                            p.gdpr-text(ng-if="service.description", uic-bind-html="service.description | translate", ng-class="{nomargin: !service.cookies.length}")
+                            table.table.table-striped.table-bordered.table-condensed(ng-if="service.cookies.length")
                                 thead
                                     tr
                                         th.gdpr-text(translate='') Name
