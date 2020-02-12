@@ -794,6 +794,11 @@ angular.module('storage.gdpr').config(["storageSettingsProvider", function(stora
     name: 'Facebook Pixel',
     description: "Unfortunately, facebook.com does not provide comprehensive information about the created and tracked cookies and keys in localStorage. For general information, you can follow this <a href='https://www.facebook.com/policies/cookies/' target='_blank'>link</a>."
   });
+  storageSettingsProvider.registerThirdPartyServiceLiteral('facebookPixel', {
+    type: 'chatflow',
+    name: 'chatflow.io',
+    description: "Unfortunately, chatflow.io does not provide comprehensive information about the created and tracked cookies and keys in localStorage. For general information, you can follow this <a href='https://chatflow.io/' target='_blank'>link</a>."
+  });
 }]);
 
 //-----------------------------------------
