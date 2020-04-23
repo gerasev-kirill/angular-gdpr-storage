@@ -799,6 +799,11 @@ angular.module('storage.gdpr').config(["storageSettingsProvider", function(stora
     name: 'chatflow.io',
     description: "Unfortunately, chatflow.io does not provide comprehensive information about the created and tracked cookies and keys in localStorage. For general information, you can follow this <a href='https://chatflow.io/' target='_blank'>link</a>."
   });
+  storageSettingsProvider.registerThirdPartyServiceLiteral('disqus', {
+    type: 'disqus',
+    name: 'Disqus',
+    description: "Unfortunately, disqus.com does not provide comprehensive information about the created and tracked cookies and keys in localStorage. For general information, you can follow this <a href='https://help.disqus.com/en/collections/191787-terms-and-policies' target='_blank'>link</a>."
+  });
 }]);
 
 angular.module('storage.gdpr').run(['gettextCatalog', function (gettextCatalog) {
