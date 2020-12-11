@@ -43,7 +43,8 @@ table.gdpr-request-permission-area-content
                     body
                         tr
                             td
-                                button.btn.btn-default.btn-xs.btn-block(translate='', ng-click="onAccept()", translate-context='Accept cookies') Accept
+                                button.btn.btn-default.btn-xs.btn-block(ng-click="onAccept()")
+                                    span(translate='', translate-context='Accept cookies') Accept
                             td.btn-separator
                             td
                                 button.btn.btn-default.btn-xs.btn-block(ng-click="onCancel()")
