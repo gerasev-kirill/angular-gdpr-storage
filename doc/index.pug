@@ -8,20 +8,39 @@ html(lang="en")
     body
         
         <!--bower:js-->
-        <script src="/components/angular/angular.js"></script>
-        <script src="/components/angular-gettext/dist/angular-gettext.js"></script>
-        <script src="/components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+        <script src="./components/angular/angular.js"></script>
+        <script src="./components/angular-gettext/dist/angular-gettext.js"></script>
+        <script src="./components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <!--endbower-->
         <!--bower:css-->
-        <link rel="stylesheet" href="/components/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="./components/bootstrap/dist/css/bootstrap.css" />
         <!--endbower-->
-        script(src="/src/module.js")
-        script(src="/src/directive.js")
-        script(src="/src/thirdPartyInfo/config.js")
-        script(src="/doc/app.js")
-        link(rel='stylesheet', href="/src/style.css")
+        script(src="./src/module.js")
+        script(src="./src/directive.js")
+        script(src="./src/thirdPartyInfo/config.js")
+        script(src="./app.js")
+        link(rel='stylesheet', href="./dist/style.css")
         <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
             
+        .container
+            .row
+                .col-md-6
+                    .well(ng-controller="Ctrl1")
+                        .form-group
+                            label(translate='') Value $localStorage.test in Ctrl1
+                            input.form-control(ng-model="$localStorage.test")
+                        .form-group
+                            label(translate='') Value $sessionStorage.testSession in Ctrl1
+                            input.form-control(ng-model="$sessionStorage.testSession")
+                .col-md-6
+                    .well(ng-controller="Ctrl2")
+                        .form-group
+                            label(translate='') Value $localStorage.test in Ctrl2
+                            input.form-control(ng-model="$localStorage.test")
+                        .form-group
+                            label(translate='') Value $sessionStorage.testSession in Ctrl2
+                            input.form-control(ng-model="$sessionStorage.testSession")
+        hr
         div(ng-controller="BodyCtrl")
             //gdpr-request-permission-area
 

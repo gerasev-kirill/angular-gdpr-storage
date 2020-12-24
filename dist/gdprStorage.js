@@ -10,9 +10,60 @@
 })(this, function(angular) {
 //-----------------------------------------
 'use strict';
-var GdprException, STORAGE_PREFIX, generateStorageFactory, getStorageKey, ngGdprStorage, ngLocalStorage, ngSessionStorage, rmNgGdprStorageWatch, rmNgLocalStorageWatch, rmNgSessionStorageWatch;
+var BaseFallbackStorage, GdprException, STORAGE_PREFIX, generateStorageFactory, getStorageKey, ngGdprStorage, ngLocalStorage, ngSessionStorage, rmNgGdprStorageWatch, rmNgLocalStorageWatch, rmNgSessionStorageWatch,
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty,
+  indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 STORAGE_PREFIX = 'ngStorage-';
+
+BaseFallbackStorage = (function() {
+  function BaseFallbackStorage() {
+    this.length = void 0;
+    if (Object.defineProperty) {
+      Object.defineProperty(this, 'length', {
+        configurable: false,
+        get: function() {
+          return this.__length();
+        }
+      });
+    }
+    return;
+  }
+
+  BaseFallbackStorage.prototype.getItem = function(name) {
+    if (arguments.length < 1) {
+      throw "Failed to execute 'getItem' on sessionStorage fallback: 1 argument required, but only " + arguments.length + " present";
+    }
+    return this.__getItem(name);
+  };
+
+  BaseFallbackStorage.prototype.setItem = function(name, value) {
+    if (arguments.length < 2) {
+      throw "Failed to execute 'setItem' on sessionStorage fallback: 2 arguments required, but only " + arguments.length + " present";
+    }
+    this.__setItem(name + '', value + '');
+  };
+
+  BaseFallbackStorage.prototype.removeItem = function(name) {
+    throw "Failed to execute 'removeItem' on sessionStorage fallback: 1 argument required, but only " + arguments.length + " present";
+    this.__removeItem(name + '');
+  };
+
+  BaseFallbackStorage.prototype.clear = function() {
+    this.__clear();
+  };
+
+  BaseFallbackStorage.prototype.key = function(i) {
+    if (arguments.length < 1) {
+      throw "Failed to execute 'key' on sessionStorage fallback: 1 argument required, but only " + arguments.length + " present";
+    }
+    return this.__key(i);
+  };
+
+  return BaseFallbackStorage;
+
+})();
 
 GdprException = function(message) {
   this.name = 'GdprException';
@@ -29,7 +80,7 @@ getStorageKey = function(key) {
 };
 
 generateStorageFactory = function($rootScope, $window, $log, $timeout, storageType, preferredStorageType, allowedKeysForGdpr) {
-  var $storage, _debounce, _last$storage, fromJson, getStorage, signalState, toJson;
+  var $storage, _debounce, _last$storage, fromJson, getStorage, memoryStorage, onStorageChangeEvent, signalState, toJson;
   _debounce = null;
   _last$storage = null;
   allowedKeysForGdpr = allowedKeysForGdpr || {};
@@ -43,6 +94,96 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
       return void 0;
     }
   };
+  memoryStorage = (function() {
+    var BANNED_PROPS, MemoryStorage, storage;
+    BANNED_PROPS = ['length'];
+    MemoryStorage = (function(superClass) {
+      extend(MemoryStorage, superClass);
+
+      function MemoryStorage() {
+        return MemoryStorage.__super__.constructor.apply(this, arguments);
+      }
+
+      MemoryStorage.prototype.__getItem = function(name) {
+        return this[name + ''] || void 0;
+      };
+
+      MemoryStorage.prototype.__setItem = function(name, value) {
+        if (angular.isFunction(this[name])) {
+          throw "Failed to execute 'setItem' on sessionStorage fallback: " + name + " is not allowed";
+        }
+        if (this[name] === value) {
+          return;
+        }
+        this[name] = value;
+      };
+
+      MemoryStorage.prototype.__removeItem = function(name) {
+        delete this[name];
+      };
+
+      MemoryStorage.prototype.__clear = function() {
+        var k;
+        for (k in this) {
+          if (!hasProp.call(this, k)) continue;
+          if (indexOf.call(BANNED_PROPS, k) < 0 && !angular.isFunction(this[k])) {
+            delete this[k];
+          }
+        }
+      };
+
+      MemoryStorage.prototype.__key = function(i) {
+        var k, keys;
+        keys = [];
+        for (k in this) {
+          if (!hasProp.call(this, k)) continue;
+          if (indexOf.call(BANNED_PROPS, k) < 0 && !angular.isFunction(this[k])) {
+            keys.push(k);
+          }
+        }
+        keys.sort();
+        return keys[i];
+      };
+
+      MemoryStorage.prototype.__length = function() {
+        var k, length;
+        length = 0;
+        for (k in this) {
+          if (!hasProp.call(this, k)) continue;
+          if (indexOf.call(BANNED_PROPS, k) < 0 && !angular.isFunction(this[k])) {
+            length += 1;
+          }
+        }
+        return length;
+      };
+
+      return MemoryStorage;
+
+    })(BaseFallbackStorage);
+    storage = new MemoryStorage();
+    if (!angular.isDefined($window.Proxy)) {
+      return storage;
+    }
+    return new Proxy(storage, {
+      set: function(obj, prop, value) {
+        var event;
+        if (obj[prop] === value) {
+          return value;
+        }
+        event = new CustomEvent('storage', {});
+        event.key = prop;
+        event.oldValue = obj[prop];
+        event.isMemoryStorage = true;
+        obj.setItem(prop, value);
+        event.newValue = obj[prop];
+        $window.dispatchEvent(event);
+        return value;
+      },
+      get: function(obj, prop) {
+        return obj[prop];
+      }
+    });
+  })();
   getStorage = (function() {
     var err, error1, error2, error3, key, localStorageSupported, sessionStorageSupported;
     try {
@@ -67,6 +208,9 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
         localStorageSupported = false;
       }
     }
+    if (!localStorageSupported && !sessionStorageSupported) {
+      $log.warn('This browser does not support Web Storage!');
+    }
     return function(storageType) {
       var storage;
       if (storageType === 'gdprStorage') {
@@ -78,16 +222,7 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
       } else if (storageType === 'sessionStorage' && sessionStorageSupported) {
         storage = sessionStorageSupported;
       }
-      if (!storage) {
-        $log.warn('This browser does not support Web Storage!');
-        return {
-          setItem: angular.noop,
-          getItem: angular.noop,
-          removeItem: angular.noop,
-          key: angular.noop
-        };
-      }
-      return storage;
+      return storage || memoryStorage;
     };
   })();
   $storage = {
@@ -220,13 +355,13 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
   }
   $storage.$sync();
   _last$storage = angular.copy($storage);
-  $window.addEventListener('storage', function(event) {
+  onStorageChangeEvent = function(event) {
     var $storageKey, value;
     if (!event || !event.key) {
       return;
     }
     $storageKey = getStorageKey(event.key);
-    if (event.key !== (STORAGE_PREFIX + $storageKey) || event.storageArea !== getStorage(storageType)) {
+    if (event.key !== (STORAGE_PREFIX + $storageKey) || (!event.isMemoryStorage && event.storageArea !== getStorage(storageType))) {
       return;
     }
     value = fromJson(event.newValue);
@@ -239,8 +374,10 @@ generateStorageFactory = function($rootScope, $window, $log, $timeout, storageTy
     if (!$rootScope.$$phase) {
       $rootScope.$apply();
     }
-  });
+  };
+  $window.addEventListener('storage', onStorageChangeEvent);
   $window.addEventListener('beforeunload', function(event) {
+    $window.removeEventListener('storage', onStorageChangeEvent);
     $storage.$apply();
   }, false);
   return $storage;

@@ -1,6 +1,39 @@
 'use strict'
 STORAGE_PREFIX = 'ngStorage-'
 
+class BaseFallbackStorage
+    constructor: ()->
+        @length = undefined
+        if Object.defineProperty
+            Object.defineProperty(@, 'length', {
+                configurable: false
+                get: ()->
+                    @__length()
+            })
+        return
+    getItem: (name)->
+        if arguments.length < 1
+            throw "Failed to execute 'getItem' on sessionStorage fallback: 1 argument required, but only #{arguments.length} present"
+        @__getItem(name)
+    setItem: (name, value)->
+        if arguments.length < 2
+            throw "Failed to execute 'setItem' on sessionStorage fallback: 2 arguments required, but only #{arguments.length} present"
+        @__setItem(name+'', value+'')
+        return
+    removeItem: (name)->
+        throw "Failed to execute 'removeItem' on sessionStorage fallback: 1 argument required, but only #{arguments.length} present"
+        @__removeItem(name+'')
+        return
+    clear: ()->
+        @__clear()
+        return
+    key: (i)->
+        if arguments.length < 1
+            throw "Failed to execute 'key' on sessionStorage fallback: 1 argument required, but only #{arguments.length} present"
+        @__key(i)
+
+
+
 GdprException = (message)->
     @name = 'GdprException'
     @message = message or ''
@@ -14,6 +47,7 @@ getStorageKey = (key) ->
 
 
 
+# TODO: CookieStorage
 
 
 generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, preferredStorageType, allowedKeysForGdpr) ->
@@ -26,6 +60,58 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
             return angular.fromJson(data)
         catch error
             return undefined
+
+    memoryStorage = do()->
+        BANNED_PROPS = ['length']
+        class MemoryStorage extends BaseFallbackStorage
+            __getItem: (name)->
+                @[name+''] or undefined
+            __setItem: (name, value)->
+                if angular.isFunction(@[name])
+                    throw "Failed to execute 'setItem' on sessionStorage fallback: #{name} is not allowed"
+                if @[name] == value then return
+                @[name] = value
+                return
+            __removeItem: (name)->
+                delete @[name]
+                return
+            __clear: ()->
+                for own k of @ when k not in BANNED_PROPS and !angular.isFunction(@[k])
+                    delete @[k]
+                return
+            __key: (i)->
+                keys = []
+                for own k of @ when k not in BANNED_PROPS and !angular.isFunction(@[k])
+                    keys.push(k)
+                keys.sort()
+                keys[i]
+            __length: ()->
+                length = 0
+                for own k of @ when k not in BANNED_PROPS and !angular.isFunction(@[k])
+                    length += 1
+                length
+
+        storage = new MemoryStorage()
+        if !angular.isDefined($window.Proxy)
+            return storage
+        ##
+        new Proxy(storage, {
+            set: (obj, prop, value)->
+                if obj[prop] == value then return value
+                event = new CustomEvent('storage', {})
+                event.key = prop
+                event.oldValue = obj[prop]
+                event.isMemoryStorage = true
+
+                obj.setItem(prop, value)
+                event.newValue = obj[prop]
+                $window.dispatchEvent(event)
+                return value
+            get: (obj, prop)->
+                return obj[prop]
+        })
+
+
 
     getStorage = do()->
         # Some installations of IE, for an unknown reason, throw "SCRIPT5: Error: Access is denied"
@@ -52,6 +138,9 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
             catch err
                 localStorageSupported = false
 
+        if !localStorageSupported and !sessionStorageSupported
+            $log.warn('This browser does not support Web Storage!')
+
         (storageType) ->
             if storageType == 'gdprStorage'
                 storageType = preferredStorageType
@@ -60,16 +149,7 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
                 storage = localStorageSupported
             else if storageType == 'sessionStorage' and sessionStorageSupported
                 storage = sessionStorageSupported
-            if !storage
-                #9: Assign a placeholder object if Web Storage is unavailable to prevent breaking the entire AngularJS app
-                $log.warn('This browser does not support Web Storage!')
-                return {
-                    setItem: angular.noop
-                    getItem: angular.noop
-                    removeItem: angular.noop
-                    key: angular.noop
-                }
-            storage
+            storage or memoryStorage
 
 
     $storage = {
@@ -164,11 +244,11 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
     _last$storage = angular.copy  ($storage)
 
     # #6: Use `$window.addEventListener` instead of `angular.element` to avoid the jQuery-specific `event.originalEvent`
-    $window.addEventListener 'storage', (event) ->
+    onStorageChangeEvent = (event) ->
         if !event or !event.key
             return
         $storageKey = getStorageKey(event.key)
-        if event.key != (STORAGE_PREFIX + $storageKey) or event.storageArea != getStorage(storageType)
+        if event.key != (STORAGE_PREFIX + $storageKey) or (!event.isMemoryStorage and event.storageArea != getStorage(storageType))
             return
         #
         value = fromJson(event.newValue)
@@ -181,8 +261,10 @@ generateStorageFactory = ($rootScope, $window, $log, $timeout, storageType, pref
             $rootScope.$apply()
         return
 
+    $window.addEventListener('storage', onStorageChangeEvent)
     $window.addEventListener 'beforeunload',
         (event) ->
+            $window.removeEventListener('storage', onStorageChangeEvent)
             $storage.$apply()
             return
         ,
