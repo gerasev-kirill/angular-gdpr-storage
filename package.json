@@ -17,6 +17,7 @@
     "test": "grunt test"
   },
   "devDependencies": {
+    "angular-template-inline-js": "^0.1.6",
     "bower": "^1.x",
     "grunt": "^0.4.1",
     "grunt-angular-gettext": "git+https://github.com/gerasev-kirill/grunt-angular-gettext.git",

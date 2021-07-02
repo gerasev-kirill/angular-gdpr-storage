@@ -287,4 +287,9 @@ angular.module('storage.gdpr')
         name: 'Disqus'
         description: """Unfortunately, disqus.com does not provide comprehensive information about the created and tracked cookies and keys in localStorage. For general information, you can follow this <a href='https://help.disqus.com/en/collections/191787-terms-and-policies' target='_blank'>link</a>."""
     })
+    storageSettingsProvider.registerThirdPartyServiceLiteral('googleAdSense', {
+        type: 'googleAdSense'
+        name: 'Adsense'
+        description: """Unfortunately, Google AdSense does not provide comprehensive information about the created and tracked cookies and keys in localStorage. For general information, you can follow this <a href="https://policies.google.com/technologies/cookies?hl=en-US#types-of-cookies" target="_blank">link</a>."""
+    })
     return
